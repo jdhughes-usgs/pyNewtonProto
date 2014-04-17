@@ -1,0 +1,86 @@
+<StructuredData>
+	<Dimensions>
+		<nrow>10</nrow>
+		<ncol>10</ncol>
+		<nlay>1</nlay>
+		<dx>500.</dx>
+		<dy>500. 500. 500. 500. 500. 500. 500. 500. 500. 500.</dy>
+	</Dimensions>
+	<Properties>
+        <CellType>
+            <Layer1>
+                -1 1 1 1 1 1 1 1 1 -1
+                -1 1 1 1 1 1 1 1 1 -1
+                -1 1 1 1 1 1 1 1 1 -1
+                -1 1 1 1 1 1 1 1 1 -1
+                -1 1 1 1 1 1 1 1 1 -1
+                -1 1 1 1 1 1 1 1 1 -1
+                -1 1 1 1 1 1 1 1 1 -1
+                -1 1 1 1 1 1 1 1 1 -1
+                -1 1 1 1 1 1 1 1 1 -1
+                -1 1 1 1 1 1 1 1 1 -1
+            </Layer1>
+        </CellType>
+        <TopElevation>15.</TopElevation>
+        <BottomElevation>
+            <Layer1>
+                -10.
+            </Layer1>
+        </BottomElevation>
+		<HorizontalConductivity>
+			<Layer1>
+				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
+				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
+				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
+				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
+				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
+				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
+				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
+				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
+				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
+				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
+			</Layer1>
+		</HorizontalConductivity>
+	</Properties>
+    <InitialState>
+        <Head>
+			<Layer1>
+                10. 10. 0. 0. 0. 0. 0. 0. 0. 1.
+                10. 10. 0. 0. 0. 0. 0. 0. 0. 1.
+                10. 10. 0. 0. 0. 0. 0. 0. 0. 1.
+                10. 10. 0. 0. 0. 0. 0. 0. 0. 1.
+                10. 10. 0. 0. 0. 0. 0. 0. 0. 1.
+                10. 10. 0. 0. 0. 0. 0. 0. 0. 1.
+                10. 10. 0. 0. 0. 0. 0. 0. 0. 1.
+                10. 10. 0. 0. 0. 0. 0. 0. 0. 1.
+                10. 10. 0. 0. 0. 0. 0. 0. 0. 1.
+                10. 10. 0. 0. 0. 0. 0. 0. 0. 1.
+			</Layer1>
+        </Head>
+    </InitialState>
+    <Settings>
+        <Hclose>1.e-3</Hclose>
+        <Rclose>1.e-1</Rclose>
+        <InnerIterations>100</InnerIterations>
+        <OuterIterations>50</OuterIterations>
+        <NewtonRaphson>False</NewtonRaphson>
+    </Settings>
+    <StressPeriodData>
+        <StressPeriod2>
+            <Head>
+                <Layer1>
+                    1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                    1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                    1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                    1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                    1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                    1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                    1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                    1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                    1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                    1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                </Layer1>
+            </Head>
+        </StressPeriod2>
+    </StressPeriodData>
+</StructuredData>

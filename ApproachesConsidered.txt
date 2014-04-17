@@ -1,0 +1,22 @@
+Assembly by connection
+Add bc's
+
+Single call for standard conductance formulation
+	Assembly using h0 + bc
+
+Two calls for Newton formulation
+	C1 with h0
+	Q1 = C1h0 + bc1
+	
+	C2 with h0 + e
+	Q2 = C2(h0+e) + bc2
+	
+	J = (Q1 - Q2) / e
+
+
+Standard newton
+	Jdh = r
+	h = h0 + dh
+
+Manipulated newton to solve for h
+	Jh = r - Jh0
