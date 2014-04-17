@@ -28,7 +28,8 @@
             </Layer1>
         </BottomElevation>
 		<HorizontalConductivity>
-			<Layer1>
+            <Layer1>10.</Layer1>
+			<Layer10>
 				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
 				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
 				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
@@ -39,7 +40,7 @@
 				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
 				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
 				5. 5. 5. 5. 5. 10. 10. 10. 10. 10.
-			</Layer1>
+			</Layer10>
 		</HorizontalConductivity>
 	</Properties>
     <InitialState>
@@ -59,8 +60,8 @@
         </Head>
     </InitialState>
     <Settings>
-        <Hclose>1.e-3</Hclose>
-        <Rclose>1.e-1</Rclose>
+        <Hclose>1.e-9</Hclose>
+        <Rclose>1.e-3</Rclose>
         <InnerIterations>100</InnerIterations>
         <OuterIterations>50</OuterIterations>
         <NewtonRaphson>False</NewtonRaphson>

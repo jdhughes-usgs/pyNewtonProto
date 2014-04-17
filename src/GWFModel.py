@@ -92,8 +92,8 @@ class GWFModel:
             x0 = np.copy(self.x)
             r0 = self.__calculateResidual(x0)
             info = 0
-            #self.x[:], info = cg(self.acsr, self.rhs, x0=x0, tol=self.rclose, M=M)
-            self.x[:], info = bicgstab(self.acsr, self.rhs, x0=x0, tol=self.rclose, maxiter=self.inneriterations, M=M)
+            self.x[:], info = cg(self.acsr, self.rhs, x0=x0, tol=self.rclose, maxiter=self.inneriterations, M=M)
+            #self.x[:], info = bicgstab(self.acsr, self.rhs, x0=x0, tol=self.rclose, maxiter=self.inneriterations, M=M)
             if info < 0:
                 raise Exception('illegal input or breakdown in linear solver...')
             r1 = self.__calculateResidual(self.x)
@@ -171,8 +171,8 @@ class GWFModel:
             ia0 = idiag + 1
             ia1 = self.ia[node+1]
             hnode = self.x[node]
-#            if self.celltype[node] == 0:
-            if self.celltype[node] < 1:
+            if self.celltype[node] == 0:
+#            if self.celltype[node] < 1:
                 self.a[idiag] = -1.
                 self.rhs[node] = -hnode
                 continue
@@ -184,9 +184,9 @@ class GWFModel:
                 v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
                 self.a[jdx] = v
                 self.a[idiag] -= v
-#            if self.celltype[node] < 0:
-#                self.a[idiag] -= 1.e20
-#                self.rhs[node] -= 1.e20*hnode
+            if self.celltype[node] < 0:
+                self.a[idiag] -= 1.e20
+                self.rhs[node] -= 1.e20*hnode
         #add boundary conditions
         return
 

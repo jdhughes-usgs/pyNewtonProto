@@ -23,6 +23,8 @@ def main():
             converge = model.solve(kper, kstp)
             if converge:
                 break
+        print model.x[0:10]
+        print model.x[90:]
 
 
 if __name__ == '__main__':
