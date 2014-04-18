@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0116975d-e90e-4ef1-ab1c-6442fb6eb194" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test/WaterTableExample_simple.xlsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="DELETED" beforePath="D:\Users\jdhughes\_Data\Projects\OGW\pyNewtonProto\src\.idea\.name" afterPath="" />
-      <change type="DELETED" beforePath="D:\Users\jdhughes\_Data\Projects\OGW\pyNewtonProto\src\.idea\workspace.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test/WaterTableExample_simple.xlsx" afterPath="$PROJECT_DIR$/Test/WaterTableExample_simple.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GWFModel.py" afterPath="$PROJECT_DIR$/src/GWFModel.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RunStructuredModel.py" afterPath="$PROJECT_DIR$/src/RunStructuredModel.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test/WaterTable2D.xml" afterPath="$PROJECT_DIR$/Test/WaterTable2D.xml" />
-      <change type="MOVED" beforePath="D:\Users\jdhughes\_Data\Projects\OGW\pyNewtonProto\src\.idea\NewtonTest.iml" afterPath="$PROJECT_DIR$/.idea/pyNewtonProto.iml" />
-      <change type="MOVED" beforePath="D:\Users\jdhughes\_Data\Projects\OGW\pyNewtonProto\src\.idea\encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MOVED" beforePath="D:\Users\jdhughes\_Data\Projects\OGW\pyNewtonProto\src\.idea\misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MOVED" beforePath="D:\Users\jdhughes\_Data\Projects\OGW\pyNewtonProto\src\.idea\modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MOVED" beforePath="D:\Users\jdhughes\_Data\Projects\OGW\pyNewtonProto\src\.idea\scopes\scope_settings.xml" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="MOVED" beforePath="D:\Users\jdhughes\_Data\Projects\OGW\pyNewtonProto\src\.idea\vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pyNewtonProto.iml" afterPath="$PROJECT_DIR$/.idea/pyNewtonProto.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pyNewtonProto.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,16 +33,16 @@
       <file leaf-file-name="GWFModel.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="94" column="106" selection-start="4166" selection-end="4166" vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="5984">
+            <state line="105" column="0" selection-start="4752" selection-end="4752" vertical-scroll-proportion="0.0" vertical-offset="1318" max-vertical-offset="5715">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RunStructuredModel.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/RunStructuredModel.py">
+      <file leaf-file-name="ReadStructuredxml.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ReadStructuredxml.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="362" selection-end="362" vertical-scroll-proportion="0.38593155" vertical-offset="120" max-vertical-offset="646">
+            <state line="138" column="0" selection-start="5661" selection-end="5661" vertical-scroll-proportion="0.0" vertical-offset="1888" max-vertical-offset="2610">
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -58,10 +50,48 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="RunStructuredModel.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/RunStructuredModel.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="0" selection-start="402" selection-end="402" vertical-scroll-proportion="0.50639856" vertical-offset="23" max-vertical-offset="570">
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ElementTree.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda/lib/python2.7/xml/etree/ElementTree.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1505" column="0" selection-start="51437" selection-end="51437" vertical-scroll-proportion="0.0" vertical-offset="22363" max-vertical-offset="25065">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WaterTable1D.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test/WaterTable1D.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="26" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1200">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WaterTable1Ds.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test/WaterTable1Ds.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="42" column="51" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0" vertical-offset="113" max-vertical-offset="795">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="WaterTable2D.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Test/WaterTable2D.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="44" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1564">
+            <state line="66" column="44" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="1380">
               <folding />
             </state>
           </provider>
@@ -80,15 +110,16 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/GWFModel.py" />
         <option value="$PROJECT_DIR$/Test/WaterTable2D.xml" />
         <option value="$PROJECT_DIR$/src/RunStructuredModel.py" />
+        <option value="$PROJECT_DIR$/Test/WaterTable1D.xml" />
+        <option value="$PROJECT_DIR$/src/GWFModel.py" />
+        <option value="$PROJECT_DIR$/Test/WaterTable1Ds.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="y" value="22" />
     <option name="width" value="1696" />
     <option name="height" value="1026" />
   </component>
@@ -118,6 +149,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -166,13 +198,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="preferences.keymap" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/RunStructuredModel.py" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Test" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="recentsLimit" value="5" />
@@ -185,6 +216,51 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.GWFModel">
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyNewtonProto" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="testToRun" value="" />
+      <option name="keywords" value="" />
+      <option name="params" value="" />
+      <option name="USE_PARAM" value="false" />
+      <option name="USE_KEYWORD" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyNewtonProto" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -201,20 +277,80 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyNewtonProto" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyNewtonProto" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Attests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="pyNewtonProto" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
     <configuration default="false" name="GWFModel" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:/Anaconda/python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Test" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyNewtonProto" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/RunStructuredModel.py" />
-      <option name="PARAMETERS" value="..\Test\WaterTable2D.xml" />
+      <option name="PARAMETERS" value="WaterTable1Ds.xml" />
       <RunnerSettings RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <method />
@@ -233,7 +369,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="0" y="22" width="1696" height="1026" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -241,18 +377,18 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39916405" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -273,14 +409,47 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/src/RunStructuredModel.py</url>
-          <line>25</line>
-          <option name="timeStamp" value="1" />
+          <line>14</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/src/RunStructuredModel.py</url>
+          <line>20</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/src/GWFModel.py</url>
+          <line>105</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="2" />
+      <option name="time" value="16" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="106" selection-start="4166" selection-end="4166" vertical-scroll-proportion="0.0" vertical-offset="1410" max-vertical-offset="5355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RunStructuredModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="362" selection-end="362" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="570">
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/WaterTable2D.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="44" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="1380">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5984">
@@ -288,23 +457,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
+    <entry file="file://$USER_HOME$/anaconda/lib/python2.7/xml/etree/ElementTree.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="106" selection-start="4166" selection-end="4166" vertical-scroll-proportion="0.0" vertical-offset="1275" max-vertical-offset="5984">
+        <state line="1505" column="0" selection-start="51437" selection-end="51437" vertical-scroll-proportion="0.0" vertical-offset="22363" max-vertical-offset="25065">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test/WaterTable2D.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="44" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1564">
+        <state line="66" column="44" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="1380">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ReadStructuredxml.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="0" selection-start="5661" selection-end="5661" vertical-scroll-proportion="0.0" vertical-offset="1888" max-vertical-offset="2610">
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/WaterTable1D.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="26" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/WaterTable1Ds.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="51" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0" vertical-offset="113" max-vertical-offset="795">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="0" selection-start="4752" selection-end="4752" vertical-scroll-proportion="0.0" vertical-offset="1318" max-vertical-offset="5715">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/RunStructuredModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="362" selection-end="362" vertical-scroll-proportion="0.38593155" vertical-offset="120" max-vertical-offset="646">
+        <state line="20" column="0" selection-start="402" selection-end="402" vertical-scroll-proportion="0.50639856" vertical-offset="23" max-vertical-offset="570">
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>

@@ -1,0 +1,75 @@
+<StructuredData>
+	<Dimensions>
+		<nrow>1</nrow>
+		<ncol>100</ncol>
+		<nlay>1</nlay>
+		<dx>50.</dx>
+		<dy>1.</dy>
+	</Dimensions>
+	<Properties>
+        <CellType>
+            <Layer1>
+                -1 1 1 1 1 1 1 1 1 1
+                 1 1 1 1 1 1 1 1 1 1
+                 1 1 1 1 1 1 1 1 1 1
+                 1 1 1 1 1 1 1 1 1 1
+                 1 1 1 1 1 1 1 1 1 1
+                 1 1 1 1 1 1 1 1 1 1
+                 1 1 1 1 1 1 1 1 1 1
+                 1 1 1 1 1 1 1 1 1 1
+                 1 1 1 1 1 1 1 1 1 1
+                 1 1 1 1 1 1 1 1 1 -1
+            </Layer1>
+        </CellType>
+        <TopElevation>15.</TopElevation>
+        <BottomElevation>
+            <Layer1>
+                -10.
+            </Layer1>
+        </BottomElevation>
+		<HorizontalConductivity>
+            <Layer1>3.5484</Layer1>
+		</HorizontalConductivity>
+	</Properties>
+    <InitialState>
+        <Head>
+			<Layer1>
+                10. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 1.
+			</Layer1>
+        </Head>
+    </InitialState>
+    <Settings>
+        <Hclose>1.e-9</Hclose>
+        <Rclose>1.e-3</Rclose>
+        <InnerIterations>100</InnerIterations>
+        <OuterIterations>50</OuterIterations>
+        <NewtonRaphson>False</NewtonRaphson>
+    </Settings>
+    <StressPeriodData>
+        <StressPeriod2>
+            <Head>
+                <Layer1>
+                 1. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+                 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.1
+                </Layer1>
+            </Head>
+        </StressPeriod2>
+    </StressPeriodData>
+</StructuredData>

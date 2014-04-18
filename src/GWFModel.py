@@ -101,6 +101,8 @@ class GWFModel:
             if hmax <= self.hclose and abs(r1) <= self.rclose:
                 print ' Outer Iterations: {0}'.format(outer+1)
                 converged = True
+                self.__calculateCellQ(self.x)
+                print self.cellQ[3], self.cellQ[-3]
                 break
         return converged
 
@@ -162,15 +164,17 @@ class GWFModel:
         return M
 
     #assemble matrix
-    def __assemble(self):
+    def __assemble(self, x=None):
         self.a.fill(0.0)
         self.rhs.fill(0.0)
+        if x is None:
+            x = self.x
         #add conductance
         for node in xrange(self.neq):
             idiag = self.ia[node]
             ia0 = idiag + 1
             ia1 = self.ia[node+1]
-            hnode = self.x[node]
+            hnode = x[node]
             if self.celltype[node] == 0:
 #            if self.celltype[node] < 1:
                 self.a[idiag] = -1.
@@ -178,7 +182,7 @@ class GWFModel:
                 continue
             for jdx in xrange(ia0, ia1):
                 nodep = self.ja[jdx]
-                hnodep = self.x[nodep]
+                hnodep = x[nodep]
                 if self.celltype[nodep] == 0:
                     continue
                 v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
@@ -192,12 +196,37 @@ class GWFModel:
 
     def __calculateResidual(self, x):
         #assemble matrix
-        self.__assemble()
-        acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
-        r = acsr.dot(x) - self.rhs
+        self.__assemble(x=x)
+        #self.acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
+        #r = self.acsr.dot(x) - self.rhs
+        r = np.zeros(self.neq, np.float)
+        for node in xrange(self.neq):
+            if self.celltype[node] < 1:
+                continue
+            idiag = self.ia[node]
+            i0 = idiag
+            i1 = self.ia[node+1]
+            r[node] -= self.rhs[node]
+            for jdx in xrange(i0, i1):
+                jcol = self.ja[jdx]
+                r[node] += self.a[jdx] * x[jcol]
         iloc = np.argmax(np.abs(r))
         rmax = r[iloc]
         return rmax
+
+    def __calculateCellQ(self, x):
+        #assemble matrix
+        self.__assemble(x=x)
+        self.cellQ = np.zeros(self.nja, np.float)
+        for node in xrange(self.neq):
+            idiag = self.ia[node]
+            i0 = idiag + 1
+            i1 = self.ia[node+1]
+            for jdx in xrange(i0, i1):
+                jcol = self.ja[jdx]
+                self.cellQ[jdx] = self.a[jdx] * (x[jcol] - x[node])
+        return None
+
 
 
     def __calculateConductance(self, jdx, node, nodep, h, hp):
@@ -225,7 +254,7 @@ class GWFModel:
             dp = self.connectionlength_m[jdx]
             w = self.connectionwidth[jdx]
             numer = w * t * tp
-            denom = (t * d) + (tp * dp)
+            denom = (t * dp) + (tp * d)
             if denom > 0.:
                 v = numer / denom
         return v
@@ -327,7 +356,7 @@ class GWFModel:
     def __node2lrc(self, node):
         k = node / self.nrc
         nn = node - k * self.nrc
-        i = nn / self.nrow
+        i = nn / self.ncol
         nn -= i * self.nrow
         j = nn
         return k, i, j
