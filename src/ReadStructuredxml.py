@@ -51,18 +51,30 @@ class StructuredXML:
         inneriterations = int(settings.find('InnerIterations').text)
         hclose = float(settings.find('Hclose').text)
         rclose = float(settings.find('Rclose').text)
-        lt = settings.find('NewtonRaphson').text
+        try:
+            lt = settings.find('NewtonRaphson').text
+        except:
+            lt = None
         if lt == 'True':
             newtonraphson = True
         else:
             newtonraphson = False
+        try:
+            lt = settings.find('ConstantHeadAsGHB').text
+        except:
+            lt = None
+        if lt == 'True':
+            chasghb = True
+        else:
+            chasghb = False
         #--return dictionary of data
         return {'nlay':self.nlay, 'nrow':self.nrow, 'ncol':self.ncol, 'dx':dx, 'dy':dy,
                 'scelltype':scelltype, 'shead0':shead0,
                 'selevations':selevations, 'shk':shk,
                 'outeriterations':outeriterations, 'inneriterations':inneriterations,
                 'hclose':hclose, 'rclose':rclose,
-                'newtonraphson':newtonraphson}
+                'newtonraphson':newtonraphson,
+                'chasghb':chasghb}
 
     def getStressPeriodData(self, kper):
         if kper == 0:
@@ -74,8 +86,13 @@ class StructuredXML:
         else:
             #head data
             child = onPeriod.find('Head')
-            data_dict['shead0'] = self.__get3DDataFromList(handle=child, shape=(self.nlay, self.nrow, self.ncol))
-           #boundary data
+            if child is not None:
+                data_dict['shead0'] = self.__get3DDataFromList(handle=child, shape=(self.nlay, self.nrow, self.ncol))
+            #boundary data
+            #recharge data
+            child = onPeriod.find('Recharge')
+            if child is not None:
+                data_dict['srecharge'] = self.__get3DDataFromList(handle=child, shape=(self.nlay, self.nrow, self.ncol))
         return data_dict
 
 

@@ -28,7 +28,7 @@
             </Layer1>
         </BottomElevation>
 		<HorizontalConductivity>
-            <Layer1>3.5484</Layer1>
+            <Layer1>10.</Layer1>
 		</HorizontalConductivity>
 	</Properties>
     <InitialState>
@@ -53,8 +53,14 @@
         <InnerIterations>100</InnerIterations>
         <OuterIterations>50</OuterIterations>
         <NewtonRaphson>False</NewtonRaphson>
+        <ConstantHeadAsGHB>True</ConstantHeadAsGHB>
     </Settings>
     <StressPeriodData>
+        <StressPeriod1>
+            <Recharge>
+                <Layer1>0.00002</Layer1>
+            </Recharge>
+        </StressPeriod1>
         <StressPeriod2>
             <Head>
                 <Layer1>

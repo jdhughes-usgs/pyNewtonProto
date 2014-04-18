@@ -1,5 +1,39 @@
-Assembly by connection
-Add bc's
+Conductance assembly by connection
+
+Add bc's to diagonal of coefficient matrix (A)
+    o Recharge
+
+Assembly options for constant heads:
+    1) Maintain connectivity and base conductance for the diagonal and
+       off diagonals (like the constant head cell was an active cell).
+       Then subtract a big number (1e20) from the diagonal and subtract
+       the product of the big number and the specified head. This is what
+       Sorab does in MODFLOW-USG. Specific steps:
+
+         Constant head cell:
+           o Assemble like an active cell. -sum of conductances in diagonal
+             (node_n). Off diagonals (node_m) set to Cn-m.
+           o Subtract a big number (1e20) from the diagonal (node_n)
+           o Subtract the product of the big number (1e20) and the specified
+             head in the connected cell (-1e20 x h(node_m)) from RHS(node_n)
+
+         Active cells connected to a constant head cell
+           o Assembled like a connection between two active cells.
+
+    2) Treat a constant head cell as a general-head boundary in active
+       cells adjacent to constant head cells. Specific steps:
+
+         Constant head cell:
+           o Diagonal (node_n) set to -1
+           o RHS(node_n) set to -head(node_n)
+           o All off diagonals (node_m) set to zero
+
+         Active cells connected to a constant head cell:
+           o Subtract conductance between the active and constant (Cn-m) head
+             cells from the diagonal
+           o Subtract the product of the conductance and the specified
+             head in the connected cell (-Cn-m x h(node_m)) from RHS(node_n)
+           o Off diagonal for connection (node_m) set to zero
 
 Single call for standard conductance formulation
 	Assembly using h0 + bc
@@ -15,8 +49,8 @@ Two calls for Newton formulation
 
 
 Standard newton
-	Jdh = r
+	Jdh = -r
 	h = h0 + dh
 
 Manipulated newton to solve for h
-	Jh = r - Jh0
+	Jh = -r - Jh0

@@ -20,6 +20,7 @@ class GWFModel:
         self.inneriterations = xml_static['inneriterations']
         self.outeriterations = xml_static['outeriterations']
         self.newtonraphson = xml_static['newtonraphson']
+        self.chasghb = xml_static['chasghb']
         #dimensions
         if self.structuredModel:
             self.nlay = xml_static['nlay']
@@ -58,6 +59,8 @@ class GWFModel:
         self.thickness = self.top - self.bottom
         self.Trans = self.kh * self.thickness
         self.cellsaturation = np.ones(self.neq, np.float)
+        #boundary condition flags
+        self.rechargebnd = False
         #create coefficient matrix, rhs, and x
         self.a = np.zeros(self.nja, np.float)
         self.x = np.empty(self.neq, np.float)
@@ -70,9 +73,18 @@ class GWFModel:
         if self.structuredModel:
             data_dict = self.xmlinput.getStressPeriodData(kper)
             if len(data_dict) > 0:
+                #heads
                 try:
                     t = data_dict['shead0']
                     self.__set_StructuredHead(data_dict['shead0'])
+                except:
+                    pass
+                #boundaries
+                #recharge
+                try:
+                    t = data_dict['srecharge']
+                    self.__set_StructuredRecharge(data_dict['srecharge'])
+                    self.rechargebnd = True
                 except:
                     pass
         else:
@@ -102,7 +114,7 @@ class GWFModel:
                 print ' Outer Iterations: {0}'.format(outer+1)
                 converged = True
                 self.__calculateCellQ(self.x)
-                print self.cellQ[3], self.cellQ[-3]
+                print self.cellQ[4], self.cellQ[-4]
                 break
         return converged
 
@@ -176,22 +188,37 @@ class GWFModel:
             ia1 = self.ia[node+1]
             hnode = x[node]
             if self.celltype[node] == 0:
-#            if self.celltype[node] < 1:
                 self.a[idiag] = -1.
                 self.rhs[node] = -hnode
                 continue
+            elif self.celltype[node] < 0:
+                if not self.chasghb:
+                    self.a[idiag] -= 1.e20
+                    self.rhs[node] -= 1.e20*hnode
+                else:
+                    self.a[idiag] = -1.
+                    self.rhs[node] = -hnode
+                    continue
             for jdx in xrange(ia0, ia1):
                 nodep = self.ja[jdx]
                 hnodep = x[nodep]
                 if self.celltype[nodep] == 0:
                     continue
                 v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
-                self.a[jdx] = v
-                self.a[idiag] -= v
-            if self.celltype[node] < 0:
-                self.a[idiag] -= 1.e20
-                self.rhs[node] -= 1.e20*hnode
+                if self.celltype[nodep] > 0:
+                    self.a[idiag] -= v
+                    self.a[jdx] = v
+                elif self.celltype[nodep] < 0:
+                    self.a[idiag] -= v
+                    if self.chasghb:
+                        self.rhs[node] -= v*hnodep
+                    else:
+                        self.a[jdx] = v
         #add boundary conditions
+        if self.rechargebnd:
+            for node in xrange(self.neq):
+                if self.celltype[node] > 0:
+                    self.rhs[node] -= self.recharge[node]
         return
 
     def __calculateResidual(self, x):
@@ -352,6 +379,12 @@ class GWFModel:
             if self.celltype[node] < 1:
                 self.head0[node] = v[node]
                 self.x[node] = v[node]
+
+    #update state variables for recharge boundary
+    def __set_StructuredRecharge(self, srecharge):
+        self.recharge = self.__structured3DToUnstructured(srecharge)
+        self.recharge *= self.cellarea
+
 
     def __node2lrc(self, node):
         k = node / self.nrc
