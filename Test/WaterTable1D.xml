@@ -52,7 +52,7 @@
         <Rclose>1.e-3</Rclose>
         <InnerIterations>100</InnerIterations>
         <OuterIterations>50</OuterIterations>
-        <NewtonRaphson>False</NewtonRaphson>
+        <NewtonRaphson>True</NewtonRaphson>
         <SolveForHead>True</SolveForHead>
         <ConstantHeadAsGHB>True</ConstantHeadAsGHB>
     </Settings>
