@@ -20,6 +20,7 @@ class GWFModel:
         self.inneriterations = xml_static['inneriterations']
         self.outeriterations = xml_static['outeriterations']
         self.newtonraphson = xml_static['newtonraphson']
+        self.headsolution = xml_static['headsolution']
         self.chasghb = xml_static['chasghb']
         #dimensions
         if self.structuredModel:
@@ -64,7 +65,8 @@ class GWFModel:
         #create coefficient matrix, rhs, and x
         self.a = np.zeros(self.nja, np.float)
         self.x = np.empty(self.neq, np.float)
-        self.rhs = np.zeros(self.neq, np.float)
+        self.rhs = np.empty(self.neq, np.float)
+        self.r = np.empty(self.neq, np.float)
         #initialize x
         self.x = self.head0[:]
 
@@ -96,25 +98,34 @@ class GWFModel:
         converged = False
         print 'Solving stress period: {0:5d} time step: {1:5d}'.format(kper+1, kstp+1)
         for outer in xrange(self.outeriterations):
-            #assemble matrix
+            #--assemble matrix
             self.__assemble()
             #solve matrix
             self.acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
             M = self.get_preconditioner()
             x0 = np.copy(self.x)
-            r0 = self.__calculateResidual(x0)
+            #--calculate initial residual
+            #  do not attempt a solution if the initial solution is an order of
+            #  magnitude less than rclose
+            rmax0 = self.__calculateResidual(x0)
+            if outer > 0 and abs(rmax0) <= 0.1 * self.rclose:
+                break
+            #--solve matrix
             info = 0
-            self.x[:], info = cg(self.acsr, self.rhs, x0=x0, tol=self.rclose, maxiter=self.inneriterations, M=M)
-            #self.x[:], info = bicgstab(self.acsr, self.rhs, x0=x0, tol=self.rclose, maxiter=self.inneriterations, M=M)
+            if self.newtonraphson:
+                self.x[:], info = bicgstab(self.acsr, self.rhs, x0=x0, tol=self.rclose, maxiter=self.inneriterations, M=M)
+            else:
+                self.x[:], info = cg(self.acsr, self.rhs, x0=x0, tol=self.rclose, maxiter=self.inneriterations, M=M)
             if info < 0:
                 raise Exception('illegal input or breakdown in linear solver...')
-            r1 = self.__calculateResidual(self.x)
+            #--calculate updated residual
+            rmax1 = self.__calculateResidual(self.x)
             hmax = np.abs(self.x - x0).max()
-            if hmax <= self.hclose and abs(r1) <= self.rclose:
+            if hmax <= self.hclose and abs(rmax1) <= self.rclose:
                 print ' Outer Iterations: {0}'.format(outer+1)
                 converged = True
                 self.__calculateCellQ(self.x)
-                print self.cellQ[4], self.cellQ[-4]
+                #print self.cellQ[4], self.cellQ[-4]
                 break
         return converged
 
@@ -181,12 +192,13 @@ class GWFModel:
         self.rhs.fill(0.0)
         if x is None:
             x = self.x
-        #add conductance
+        #--add conductance
         for node in xrange(self.neq):
             idiag = self.ia[node]
             ia0 = idiag + 1
             ia1 = self.ia[node+1]
             hnode = x[node]
+            #--check if this cell is inactive or constant
             if self.celltype[node] == 0:
                 self.a[idiag] = -1.
                 self.rhs[node] = -hnode
@@ -221,24 +233,27 @@ class GWFModel:
                     self.rhs[node] -= self.recharge[node]
         return
 
+    def __get_perturbation(self):
+        return 1.0e-6
+
     def __calculateResidual(self, x):
         #assemble matrix
         self.__assemble(x=x)
-        #self.acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
-        #r = self.acsr.dot(x) - self.rhs
+        self.acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
+        self.r = self.acsr.dot(x) - self.rhs
         r = np.zeros(self.neq, np.float)
-        for node in xrange(self.neq):
-            if self.celltype[node] < 1:
-                continue
-            idiag = self.ia[node]
-            i0 = idiag
-            i1 = self.ia[node+1]
-            r[node] -= self.rhs[node]
-            for jdx in xrange(i0, i1):
-                jcol = self.ja[jdx]
-                r[node] += self.a[jdx] * x[jcol]
-        iloc = np.argmax(np.abs(r))
-        rmax = r[iloc]
+        #for node in xrange(self.neq):
+        #    if self.celltype[node] < 1:
+        #        continue
+        #    idiag = self.ia[node]
+        #    i0 = idiag
+        #    i1 = self.ia[node+1]
+        #    r[node] -= self.rhs[node]
+        #    for jdx in xrange(i0, i1):
+        #        jcol = self.ja[jdx]
+        #        r[node] += self.a[jdx] * x[jcol]
+        iloc = np.argmax(np.abs(self.r))
+        rmax = self.r[iloc]
         return rmax
 
     def __calculateCellQ(self, x):

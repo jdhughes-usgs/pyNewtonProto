@@ -4,9 +4,9 @@
     <list default="true" id="0116975d-e90e-4ef1-ab1c-6442fb6eb194" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test/WaterTableExample_simple.xlsx" afterPath="$PROJECT_DIR$/Test/WaterTableExample_simple.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GWFModel.py" afterPath="$PROJECT_DIR$/src/GWFModel.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/RunStructuredModel.py" afterPath="$PROJECT_DIR$/src/RunStructuredModel.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ReadStructuredxml.py" afterPath="$PROJECT_DIR$/src/ReadStructuredxml.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test/WaterTable1D.xml" afterPath="$PROJECT_DIR$/Test/WaterTable1D.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pyNewtonProto.iml" afterPath="$PROJECT_DIR$/.idea/pyNewtonProto.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pyNewtonProto.iws" />
@@ -33,7 +33,16 @@
       <file leaf-file-name="GWFModel.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="0" selection-start="4752" selection-end="4752" vertical-scroll-proportion="0.0" vertical-offset="1318" max-vertical-offset="5715">
+            <state line="228" column="0" selection-start="9123" selection-end="9564" vertical-scroll-proportion="0.0" vertical-offset="1928" max-vertical-offset="6435">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ApproachesConsidered.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ApproachesConsidered.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="0" selection-start="474" selection-end="474" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
               <folding />
             </state>
           </provider>
@@ -42,10 +51,8 @@
       <file leaf-file-name="ReadStructuredxml.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ReadStructuredxml.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="138" column="0" selection-start="5661" selection-end="5661" vertical-scroll-proportion="0.0" vertical-offset="1888" max-vertical-offset="2610">
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
+            <state line="62" column="64" selection-start="2685" selection-end="2685" vertical-scroll-proportion="0.0" vertical-offset="838" max-vertical-offset="3000">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -61,37 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ElementTree.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda/lib/python2.7/xml/etree/ElementTree.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1505" column="0" selection-start="51437" selection-end="51437" vertical-scroll-proportion="0.0" vertical-offset="22363" max-vertical-offset="25065">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="WaterTable1D.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Test/WaterTable1D.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="26" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1200">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WaterTable1Ds.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Test/WaterTable1Ds.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="51" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0" vertical-offset="113" max-vertical-offset="795">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WaterTable2D.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Test/WaterTable2D.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="44" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="1380">
+            <state line="55" column="21" selection-start="1645" selection-end="1657" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="1305">
               <folding />
             </state>
           </provider>
@@ -112,9 +92,11 @@
       <list>
         <option value="$PROJECT_DIR$/Test/WaterTable2D.xml" />
         <option value="$PROJECT_DIR$/src/RunStructuredModel.py" />
-        <option value="$PROJECT_DIR$/Test/WaterTable1D.xml" />
-        <option value="$PROJECT_DIR$/src/GWFModel.py" />
         <option value="$PROJECT_DIR$/Test/WaterTable1Ds.xml" />
+        <option value="$PROJECT_DIR$/ApproachesConsidered.txt" />
+        <option value="$PROJECT_DIR$/Test/WaterTable1D.xml" />
+        <option value="$PROJECT_DIR$/src/ReadStructuredxml.py" />
+        <option value="$PROJECT_DIR$/src/GWFModel.py" />
       </list>
     </option>
   </component>
@@ -350,7 +332,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="pyNewtonProto" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/RunStructuredModel.py" />
-      <option name="PARAMETERS" value="WaterTable1Ds.xml" />
+      <option name="PARAMETERS" value="WaterTable1D.xml" />
       <RunnerSettings RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <method />
@@ -360,18 +342,41 @@
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="all">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="0116975d-e90e-4ef1-ab1c-6442fb6eb194" name="Default" comment="" />
       <created>1397770907412</created>
       <updated>1397770907412</updated>
     </task>
+    <task id="LOCAL-00001" summary="Confirmed water table solution with recharge. Added option for treating constant head cells as ghbs in connected cells. ELiminates need for big number to get constant head.">
+      <created>1397856270370</created>
+      <updated>1397856270370</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1696" height="1026" extended-state="0" />
     <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -384,11 +389,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -403,15 +408,12 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="Confirmed water table solution with recharge. Added option for treating constant head cells as ghbs in connected cells. ELiminates need for big number to get constant head." />
+    <option name="LAST_COMMIT_MESSAGE" value="Confirmed water table solution with recharge. Added option for treating constant head cells as ghbs in connected cells. ELiminates need for big number to get constant head." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/src/RunStructuredModel.py</url>
-          <line>14</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/src/RunStructuredModel.py</url>
           <line>20</line>
@@ -419,14 +421,65 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/src/GWFModel.py</url>
-          <line>105</line>
+          <line>128</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="16" />
+      <option name="time" value="24" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="0" selection-start="4752" selection-end="4752" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5790">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ReadStructuredxml.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="0" selection-start="5661" selection-end="5661" vertical-scroll-proportion="0.0" vertical-offset="1888" max-vertical-offset="2610">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RunStructuredModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="570">
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/lib/python2.7/xml/etree/ElementTree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1505" column="0" selection-start="51437" selection-end="51437" vertical-scroll-proportion="0.0" vertical-offset="22575" max-vertical-offset="25095">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/WaterTable1D.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="26" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/WaterTable1Ds.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="51" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0" vertical-offset="113" max-vertical-offset="795">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/WaterTable2D.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="44" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="1380">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="94" column="106" selection-start="4166" selection-end="4166" vertical-scroll-proportion="0.0" vertical-offset="1410" max-vertical-offset="5355">
@@ -457,32 +510,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda/lib/python2.7/xml/etree/ElementTree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1505" column="0" selection-start="51437" selection-end="51437" vertical-scroll-proportion="0.0" vertical-offset="22363" max-vertical-offset="25065">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Test/WaterTable2D.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="66" column="44" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="1380">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ReadStructuredxml.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="0" selection-start="5661" selection-end="5661" vertical-scroll-proportion="0.0" vertical-offset="1888" max-vertical-offset="2610">
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test/WaterTable1D.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="26" selection-start="806" selection-end="806" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1200">
           <folding />
         </state>
       </provider>
@@ -494,9 +524,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/anaconda/lib/python2.7/xml/etree/ElementTree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1505" column="0" selection-start="51437" selection-end="51437" vertical-scroll-proportion="0.0" vertical-offset="22363" max-vertical-offset="25065">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/lib/python2.7/site-packages/scipy/sparse/linalg/dsolve/linsolve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="300" column="0" selection-start="10264" selection-end="10264" vertical-scroll-proportion="0.33272395" vertical-offset="4198" max-vertical-offset="5355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ApproachesConsidered.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="0" selection-start="474" selection-end="474" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="915">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ReadStructuredxml.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="64" selection-start="2685" selection-end="2685" vertical-scroll-proportion="0.0" vertical-offset="673" max-vertical-offset="3000">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/WaterTable1D.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="21" selection-start="1645" selection-end="1657" vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="1305">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="0" selection-start="4752" selection-end="4752" vertical-scroll-proportion="0.0" vertical-offset="1318" max-vertical-offset="5715">
+        <state line="228" column="0" selection-start="9123" selection-end="9564" vertical-scroll-proportion="0.0" vertical-offset="1928" max-vertical-offset="6435">
           <folding />
         </state>
       </provider>

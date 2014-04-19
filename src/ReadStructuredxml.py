@@ -51,6 +51,7 @@ class StructuredXML:
         inneriterations = int(settings.find('InnerIterations').text)
         hclose = float(settings.find('Hclose').text)
         rclose = float(settings.find('Rclose').text)
+        #--Newton Raphson flag
         try:
             lt = settings.find('NewtonRaphson').text
         except:
@@ -59,6 +60,16 @@ class StructuredXML:
             newtonraphson = True
         else:
             newtonraphson = False
+        #--optional solution of Newton Raphson as upgrade vector
+        try:
+            lt = settings.find('SolveForHead').text
+        except:
+            lt = None
+        if lt == 'False':
+            headsolution = False
+        else:
+            headsolution = True
+        #--optional formulation of constant heads as GHBs
         try:
             lt = settings.find('ConstantHeadAsGHB').text
         except:
@@ -74,6 +85,7 @@ class StructuredXML:
                 'outeriterations':outeriterations, 'inneriterations':inneriterations,
                 'hclose':hclose, 'rclose':rclose,
                 'newtonraphson':newtonraphson,
+                'headsolution':headsolution,
                 'chasghb':chasghb}
 
     def getStressPeriodData(self, kper):

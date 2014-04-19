@@ -53,12 +53,13 @@
         <InnerIterations>100</InnerIterations>
         <OuterIterations>50</OuterIterations>
         <NewtonRaphson>False</NewtonRaphson>
+        <SolveForHead>True</SolveForHead>
         <ConstantHeadAsGHB>True</ConstantHeadAsGHB>
     </Settings>
     <StressPeriodData>
         <StressPeriod1>
             <Recharge>
-                <Layer1>0.00002</Layer1>
+                <Layer1>0.0002</Layer1>
             </Recharge>
         </StressPeriod1>
         <StressPeriod2>
