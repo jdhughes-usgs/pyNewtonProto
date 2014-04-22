@@ -53,7 +53,7 @@
         <InnerIterations>100</InnerIterations>
         <OuterIterations>50</OuterIterations>
         <NewtonRaphson>True</NewtonRaphson>
-        <SolveForHead>True</SolveForHead>
+        <SolveForHead>False</SolveForHead>
         <ConstantHeadAsGHB>True</ConstantHeadAsGHB>
     </Settings>
     <StressPeriodData>

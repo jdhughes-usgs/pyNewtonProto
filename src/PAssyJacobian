@@ -1,0 +1,119 @@
+import os
+import math
+import numpy as np
+
+import matplotlib.pyplot as pplt
+import matplotlib as mpl
+
+#--modify default matplotlib settings
+mpl.rcParams['font.sans-serif']          = 'Univers 57 Condensed'
+mpl.rcParams['font.serif']               = 'Times'
+mpl.rcParams['font.cursive']             = 'Zapf Chancery'
+mpl.rcParams['font.fantasy']             = 'Comic Sans MS'
+mpl.rcParams['font.monospace']           = 'Courier New'
+mpl.rcParams['mathtext.default']         = 'regular'
+mpl.rcParams['pdf.compression']          = 0
+mpl.rcParams['pdf.fonttype']             = 42
+#--figure text sizes
+mpl.rcParams['legend.fontsize']  = 6
+mpl.rcParams['axes.labelsize']   = 8
+mpl.rcParams['xtick.labelsize']  = 6
+mpl.rcParams['ytick.labelsize']  = 6
+
+
+def calc_dQ(b, average=0, weighting=None):
+    fct = np.arange(0.01,1.0,0.001)
+    dq = np.zeros(fct.shape, np.float)
+    dh = 1.e-7
+    bp = b + 0.1
+    for idx, f in enumerate(fct):
+        d = f
+        dp = 1. - f
+        k = 10.0
+        kp = 1000.
+        q1 = calculateConductance(dh, b, d, k, bp, dp, kp, average=average, weighting=weighting) * dh
+        q2 = calculateConductance(dh, bp, dp, kp, b, d, k, average=average, weighting=weighting) * dh
+        dq[idx] = q1 - q2
+    return fct, dq
+
+def calculateConductance(e, b, d, k, bp, dp, kp, average=0, weighting=None):
+    frac1 = 1.005
+    frac2 = 0.995
+    v = 0.0
+    b0 = b
+    b = b + e
+    if weighting == 'upstream-weighted':
+        bup = max(b0, bp)
+        hv = k
+        hvp = kp
+    else:
+        hv = k * b
+        hvp = kp * bp
+    w = 1.0
+    #harmonic
+    if average == 0:
+        numer = w * hv * hvp
+        denom = (hv * dp) + (hvp * d)
+        if denom > 0.:
+            v = numer / denom
+    #logarithmic-mean
+    elif average == 1:
+        ratio = hvp / hv
+        if ratio > frac1 or ratio < frac2:
+            v = (hvp - hv) / math.log(ratio)
+        else:
+            v = 0.5 * (hvp + hv)
+        v *= w / (dp + d)
+    #arithmetic-mean thickness and logarithmic-mean hydraulic conductivity
+    elif average == 2:
+        ratio = kp / k
+        if ratio > frac1 or ratio < frac2:
+            v = (kp - k) / math.log(ratio)
+        else:
+            v = 0.5 * (kp + k)
+        v *= w / (dp + d)
+
+    if weighting == 'upstream-weighted':
+        v *= bup
+
+    return v
+
+
+if __name__ == '__main__':
+
+    #--plot capture fraction
+    xsf = pplt.figure(figsize=(6.0, 6.0), facecolor='w')
+    xsf.subplots_adjust(wspace=0.3, hspace=0.3, left=0.125, right=0.95, bottom=0.05, top=0.95)
+
+    thickness = np.array([0.05,0.25,0.5,0.75,0.95,1.])
+
+    averages = ['harmonic', 'logarithmic-mean',
+                'arithmetic-mean thickness and\nlogarithmic-mean hydraulic conductivity']
+    weights = ['central-weighted','upstream-weighted']
+    ifig = 0
+    for idx in xrange(len(averages)):
+        average = averages[idx]
+        for w in weights:
+            ifig += 1
+            ax = xsf.add_subplot(3,2,ifig)
+            if ifig < 3:
+                ax.text(0.975, 1.025, w, fontsize=6,
+                        horizontalalignment='right', verticalalignment='bottom', transform=ax.transAxes)
+            ax.text(0.5, 1.025, average, fontsize=6,
+                    horizontalalignment='center', verticalalignment='bottom', transform=ax.transAxes)
+            for b in thickness:
+                fct, dq = calc_dQ(b, average=idx, weighting=w)
+                ax.plot(fct, dq, color='{0}'.format(1-b), linewidth=0.75, label='b={0}'.format(b))
+            #--ylabel
+            ax.set_ylabel('dQ')
+
+    #--xlabels
+    for idx in xrange(5,7):
+        ax = xsf.add_subplot(3,2,idx)
+        ax.set_xlabel('Fraction of connection length')
+    #--save figure
+    outfig = os.path.join('..', 'Figures', 'dQversusCellFraction.png')
+    xsf.savefig(outfig,dpi=300)
+
+    print 'End'
+

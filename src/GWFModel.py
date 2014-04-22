@@ -1,4 +1,4 @@
-#import sys
+import math
 import numpy as np
 from scipy.sparse import csr_matrix
 from scipy.sparse.linalg import cg, bicgstab
@@ -98,34 +98,48 @@ class GWFModel:
         converged = False
         print 'Solving stress period: {0:5d} time step: {1:5d}'.format(kper+1, kstp+1)
         for outer in xrange(self.outeriterations):
+            #--create initial x (x0) from a copy of x
+            x0 = np.copy(self.x)
             #--assemble conductance matrix
             self.__assemble()
             #--create sparse matrix for residual calculation and conductance formulation
             self.acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
+            #--save sparse matrix with conductance
             if self.newtonraphson:
                 self.ccsr = self.acsr.copy()
-                self.__assemble(nr=True)
-                self.acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
             else:
                 self.ccsr = self.acsr
-            #--create initial x (x0) from a copy of x
-            x0 = np.copy(self.x)
             #--calculate initial residual
             #  do not attempt a solution if the initial solution is an order of
             #  magnitude less than rclose
             rmax0 = self.__calculateResidual(x0)
-            if outer > 0 and abs(rmax0) <= 0.1 * self.rclose:
+            if outer == 0 and abs(rmax0) <= 0.1 * self.rclose:
                 break
+            if self.newtonraphson:
+                self.__assemble(nr=True)
+                self.acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
+                b = -self.r.copy()
+                if self.headsolution:
+                    t = self.acsr.dot(x0)
+                    b += t
+                else:
+                    self.x.fill(0.0)
+            else:
+                b = self.rhs.copy()
             #--construct the preconditioner
             M = self.get_preconditioner()
             #--solve matrix
             info = 0
             if self.newtonraphson:
-                self.x[:], info = bicgstab(self.acsr, -self.r, x0=x0, tol=self.rclose, maxiter=self.inneriterations, M=M)
+                self.x[:], info = bicgstab(self.acsr, b, x0=self.x, tol=self.rclose, maxiter=self.inneriterations, M=M)
             else:
-                self.x[:], info = cg(self.acsr, self.rhs, x0=x0, tol=self.rclose, maxiter=self.inneriterations, M=M)
+                self.x[:], info = cg(self.acsr, b, x0=self.x, tol=self.rclose, maxiter=self.inneriterations, M=M)
             if info < 0:
                 raise Exception('illegal input or breakdown in linear solver...')
+            #--add upgrade to x0
+            if self.newtonraphson:
+                if not self.headsolution:
+                    self.x += x0
             #--calculate updated residual
             rmax1 = self.__calculateResidual(self.x)
             hmax = np.abs(self.x - x0).max()
@@ -226,9 +240,11 @@ class GWFModel:
                     continue
                 if nr:
                     dx = self.__get_perturbation(hnode)
-                    v1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
-                    v2 = self.__calculateConductance(jdx, node, nodep, hnode+dx, hnodep)
-                    v = (v1 - v2) / dx
+                    dh = (hnodep - hnode)
+                    q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep) * dh
+                    dh = (hnodep - hnode + dx)
+                    q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx) * dh
+                    v = (q2 - q1) / dx
                 else:
                     v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
                 if self.celltype[nodep] > 0:
@@ -253,19 +269,7 @@ class GWFModel:
     def __calculateResidual(self, x):
         #assemble matrix
         self.__assemble(x=x)
-        #self.acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
         self.r = self.ccsr.dot(x) - self.rhs
-        #r = np.zeros(self.neq, np.float)
-        #for node in xrange(self.neq):
-        #    if self.celltype[node] < 1:
-        #        continue
-        #    idiag = self.ia[node]
-        #    i0 = idiag
-        #    i1 = self.ia[node+1]
-        #    r[node] -= self.rhs[node]
-        #    for jdx in xrange(i0, i1):
-        #        jcol = self.ja[jdx]
-        #        r[node] += self.a[jdx] * x[jcol]
         iloc = np.argmax(np.abs(self.r))
         rmax = self.r[iloc]
         return rmax
@@ -284,34 +288,84 @@ class GWFModel:
         return None
 
 
-    def __calculateConductance(self, jdx, node, nodep, h, hp):
+    def __calculateConductance(self, jdx, node, nodep, h, hp, dx=0.0, average=0, weighting=None):
+        frac1 = 1.005
+        frac2 = 0.995
         v = 0.0
         if self.verticalconnection[jdx] == 0:
+            if h >= hp:
+                hup = h
+                idxh = 0
+            else:
+                hup = hp
+                idxh = 1
+            h += dx
             top = self.top[node]
             bottom = self.bottom[node]
             if h >= top:
-                saturation = 1.
+                #saturation = 1.
+                b = self.thickness[node]
             elif h > bottom:
-                saturation = (h - bottom) / self.thickness[node]
+                #saturation = (h - bottom) / self.thickness[node]
+                b = (h - bottom)
             else:
-                saturation = 0.
+                #saturation = 0.
+                b = 0.
             topp = self.top[nodep]
             bottomp = self.bottom[nodep]
             if hp >= topp:
-                saturationp = 1.
+                #saturationp = 1.
+                bp = self.bottom[nodep]
             elif hp > bottomp:
-                saturationp = (hp - bottomp) / self.thickness[nodep]
+                #saturationp = (hp - bottomp) / self.thickness[nodep]
+                bp = (hp - bottomp)
             else:
-                saturationp = 0.
-            t = self.Trans[node] * saturation
-            tp = self.Trans[nodep] * saturationp
+                #saturationp = 0.
+                bp = 0.
+            if idxh == 0:
+                bup = hup - bottom
+                if bup > self.thickness[node]:
+                    bup = self.thickness[node]
+            elif idxh == 1:
+                bup = hup - bottomp
+                if bup > self.thickness[nodep]:
+                    bup = self.thickness[nodep]
+            if bup < 0.:
+                bup = 0.
+            k = self.kh[node]
+            kp = self.kh[nodep]
             d = self.connectionlength_n[jdx]
             dp = self.connectionlength_m[jdx]
             w = self.connectionwidth[jdx]
-            numer = w * t * tp
-            denom = (t * dp) + (tp * d)
-            if denom > 0.:
-                v = numer / denom
+
+            if weighting == 'upstream-weighted':
+                hv = k
+                hvp = kp
+            else:
+                hv = k * b
+                hvp = kp * bp
+            #harmonic
+            if average == 0:
+                v = w * hv * hvp / ((hv * dp) + (hvp * d))
+            #logarithmic-mean
+            elif average == 1:
+                ratio = hvp / hv
+                if ratio > frac1 or ratio < frac2:
+                    v = (hvp - hv) / math.log(ratio)
+                else:
+                    v = 0.5 * (hvp + hv)
+                v *= w / (dp + d)
+            #arithmetic-mean thickness and logarithmic-mean hydraulic conductivity
+            elif average == 2:
+                ratio = kp / k
+                if ratio > frac1 or ratio < frac2:
+                    v = (kp - k) / math.log(ratio)
+                else:
+                    v = 0.5 * (kp + k)
+                v *= w / (dp + d)
+
+            if weighting == 'upstream-weighted':
+                v *= bup
         return v
 
     #structured data processing functions
