@@ -21,6 +21,8 @@ class GWFModel:
         self.outeriterations = xml_static['outeriterations']
         self.newtonraphson = xml_static['newtonraphson']
         self.headsolution = xml_static['headsolution']
+        self.averaging = xml_static['averaging']
+        self.upw = xml_static['upw']
         self.chasghb = xml_static['chasghb']
         #dimensions
         if self.structuredModel:
@@ -39,6 +41,9 @@ class GWFModel:
             #top of model and bottom of each layer
             self.top = self.__structured3DToUnstructured(xml_static['selevations'][0:self.nlay, :, :])
             self.bottom = self.__structured3DToUnstructured(xml_static['selevations'][1:self.nlay+1, :, :])
+            #set intial heads that are below the bottom of a node to the bottom of the node
+            idx = self.head0 < self.bottom
+            self.head0[idx] = self.bottom[idx] + 1e-6
             #determine cell areas, connection distances, and connection widths for each connection
             self.__createStructuredConnectionDimensions()
             #parameters
@@ -241,9 +246,11 @@ class GWFModel:
                 if nr:
                     dx = self.__get_perturbation(hnode)
                     dh = (hnodep - hnode)
-                    q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep) * dh
+                    q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep,
+                                                     average=self.averaging, upw=self.upw) * dh
                     dh = (hnodep - hnode + dx)
-                    q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx) * dh
+                    q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx,
+                                                     average=self.averaging, upw=self.upw) * dh
                     v = (q2 - q1) / dx
                 else:
                     v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
@@ -288,7 +295,7 @@ class GWFModel:
         return None
 
 
-    def __calculateConductance(self, jdx, node, nodep, h, hp, dx=0.0, average=0, weighting=None):
+    def __calculateConductance(self, jdx, node, nodep, h, hp, dx=0.0, average=0, upw=False):
         frac1 = 1.005
         frac2 = 0.995
         v = 0.0
@@ -338,7 +345,7 @@ class GWFModel:
             dp = self.connectionlength_m[jdx]
             w = self.connectionwidth[jdx]
 
-            if weighting == 'upstream-weighted':
+            if upw:
                 hv = k
                 hvp = kp
             else:
@@ -364,7 +371,7 @@ class GWFModel:
                     v = 0.5 * (kp + k)
                 v *= w / (dp + d)
 
-            if weighting == 'upstream-weighted':
+            if upw:
                 v *= bup
         return v
 

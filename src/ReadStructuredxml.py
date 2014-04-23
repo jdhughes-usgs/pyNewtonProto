@@ -69,6 +69,21 @@ class StructuredXML:
             headsolution = False
         else:
             headsolution = True
+        #--horizontal averaging
+        try:
+            lt = int(settings.find('Averaging').text)
+        except:
+            lt = 0
+        averaging = lt
+        #--upstream weighting flag
+        try:
+            lt = settings.find('UpstreamWeighting').text
+        except:
+            lt = None
+        if lt == 'True':
+            upw = True
+        else:
+            upw = False
         #--optional formulation of constant heads as GHBs
         try:
             lt = settings.find('ConstantHeadAsGHB').text
@@ -86,6 +101,8 @@ class StructuredXML:
                 'hclose':hclose, 'rclose':rclose,
                 'newtonraphson':newtonraphson,
                 'headsolution':headsolution,
+                'averaging':averaging,
+                'upw':upw,
                 'chasghb':chasghb}
 
     def getStressPeriodData(self, kper):

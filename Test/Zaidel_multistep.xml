@@ -1,0 +1,52 @@
+<StructuredData>
+	<Dimensions>
+		<nrow>1</nrow>
+		<ncol>200</ncol>
+		<nlay>1</nlay>
+		<dx>5.</dx>
+		<dy>1.</dy>
+	</Dimensions>
+	<Properties>
+        <CellType>
+            <Layer1>
+              -1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 -1
+            </Layer1>
+        </CellType>
+        <TopElevation>100.</TopElevation>
+        <BottomElevation>
+            <Layer1>
+             20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   20   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   15   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    5    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+            </Layer1>
+        </BottomElevation>
+		<HorizontalConductivity>
+            <Layer1>0.0001</Layer1>
+		</HorizontalConductivity>
+	</Properties>
+    <InitialState>
+        <Head>
+			<Layer1>
+             23   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10   10
+			</Layer1>
+        </Head>
+    </InitialState>
+    <Settings>
+        <Hclose>1.e-9</Hclose>
+        <Rclose>1.e-3</Rclose>
+        <InnerIterations>100</InnerIterations>
+        <OuterIterations>50</OuterIterations>
+        <NewtonRaphson>True</NewtonRaphson>
+        <SolveForHead>False</SolveForHead>
+        <Averaging>0</Averaging>
+        <UpstreamWeighting>False</UpstreamWeighting>
+        <ConstantHeadAsGHB>True</ConstantHeadAsGHB>
+    </Settings>
+    <StressPeriodData>
+        <StressPeriod2>
+            <Head>
+                <Layer1>
+                 23    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1    1
+                </Layer1>
+            </Head>
+        </StressPeriod2>
+    </StressPeriodData>
+</StructuredData>
