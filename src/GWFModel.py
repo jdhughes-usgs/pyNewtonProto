@@ -23,6 +23,7 @@ class GWFModel:
         self.headsolution = xml_static['headsolution']
         self.averaging = xml_static['averaging']
         self.upw = xml_static['upw']
+        self.quadsfactor = xml_static['quadsfactor']
         self.chasghb = xml_static['chasghb']
         #dimensions
         if self.structuredModel:
@@ -42,8 +43,8 @@ class GWFModel:
             self.top = self.__structured3DToUnstructured(xml_static['selevations'][0:self.nlay, :, :])
             self.bottom = self.__structured3DToUnstructured(xml_static['selevations'][1:self.nlay+1, :, :])
             #set intial heads that are below the bottom of a node to the bottom of the node
-            idx = self.head0 < self.bottom
-            self.head0[idx] = self.bottom[idx] + 1e-6
+            #idx = self.head0 < self.bottom
+            #self.head0[idx] = self.bottom[idx] + 1e-6
             #determine cell areas, connection distances, and connection widths for each connection
             self.__createStructuredConnectionDimensions()
             #parameters
@@ -246,11 +247,9 @@ class GWFModel:
                 if nr:
                     dx = self.__get_perturbation(hnode)
                     dh = (hnodep - hnode)
-                    q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep,
-                                                     average=self.averaging, upw=self.upw) * dh
+                    q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep) * dh
                     dh = (hnodep - hnode + dx)
-                    q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx,
-                                                     average=self.averaging, upw=self.upw) * dh
+                    q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx) * dh
                     v = (q2 - q1) / dx
                 else:
                     v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
@@ -271,7 +270,7 @@ class GWFModel:
         return
 
     def __get_perturbation(self, v):
-        return 1.0e-6
+        return 1.0e-7
 
     def __calculateResidual(self, x):
         #assemble matrix
@@ -295,16 +294,18 @@ class GWFModel:
         return None
 
 
-    def __calculateConductance(self, jdx, node, nodep, h, hp, dx=0.0, average=0, upw=False):
+    def __calculateConductance(self, jdx, node, nodep, h, hp, dx=0.0):
         frac1 = 1.005
         frac2 = 0.995
         v = 0.0
         if self.verticalconnection[jdx] == 0:
             if h >= hp:
                 hup = h
+                tup = self.thickness[node]
                 idxh = 0
             else:
                 hup = hp
+                tup = self.thickness[nodep]
                 idxh = 1
             h += dx
             top = self.top[node]
@@ -345,17 +346,17 @@ class GWFModel:
             dp = self.connectionlength_m[jdx]
             w = self.connectionwidth[jdx]
 
-            if upw:
+            if self.upw:
                 hv = k
                 hvp = kp
             else:
                 hv = k * b
                 hvp = kp * bp
             #harmonic
-            if average == 0:
+            if self.averaging == 0:
                 v = w * hv * hvp / ((hv * dp) + (hvp * d))
             #logarithmic-mean
-            elif average == 1:
+            elif self.averaging == 1:
                 ratio = hvp / hv
                 if ratio > frac1 or ratio < frac2:
                     v = (hvp - hv) / math.log(ratio)
@@ -363,7 +364,7 @@ class GWFModel:
                     v = 0.5 * (hvp + hv)
                 v *= w / (dp + d)
             #arithmetic-mean thickness and logarithmic-mean hydraulic conductivity
-            elif average == 2:
+            elif self.averaging == 2:
                 ratio = kp / k
                 if ratio > frac1 or ratio < frac2:
                     v = (kp - k) / math.log(ratio)
@@ -371,8 +372,21 @@ class GWFModel:
                     v = 0.5 * (kp + k)
                 v *= w / (dp + d)
 
-            if upw:
-                v *= bup
+            if self.upw:
+                bratio = bup / tup
+                if bratio <= 0.0:
+                    v = 1e-6
+                else:
+                    a = 1. / (1 - self.quadsfactor)
+                    if bratio <= self.quadsfactor:
+                        sf = 0.5 * a * (bratio**2) / self.quadsfactor
+                    elif bratio > self.quadsfactor and bratio <= (1. - self.quadsfactor):
+                        sf = a * bratio + 0.5 * (1 - a)
+                    elif bratio > (1. - self.quadsfactor) and bratio < 1.:
+                        sf = 1. - ((0.5 * a * ((1 - bratio)**2)) / self.quadsfactor)
+                    else:
+                        sf = 1.
+                    v *= tup * sf
         return v
 
     #structured data processing functions

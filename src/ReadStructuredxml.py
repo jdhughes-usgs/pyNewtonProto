@@ -84,6 +84,15 @@ class StructuredXML:
             upw = True
         else:
             upw = False
+        #--quadratic smoothing factor
+        try:
+            lt = float(settings.find('QuadraticSmoothingFactor').text)
+        except:
+            lt = None
+        if lt is None:
+            quadsfactor = lt
+        else:
+            quadsfactor = 1.0e-5
         #--optional formulation of constant heads as GHBs
         try:
             lt = settings.find('ConstantHeadAsGHB').text
@@ -103,6 +112,7 @@ class StructuredXML:
                 'headsolution':headsolution,
                 'averaging':averaging,
                 'upw':upw,
+                'quadsfactor':quadsfactor,
                 'chasghb':chasghb}
 
     def getStressPeriodData(self, kper):

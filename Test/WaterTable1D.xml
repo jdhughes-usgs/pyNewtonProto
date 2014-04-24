@@ -49,10 +49,13 @@
     </InitialState>
     <Settings>
         <Hclose>1.e-9</Hclose>
-        <Rclose>1.e-3</Rclose>
+        <Rclose>1.e-6</Rclose>
         <InnerIterations>100</InnerIterations>
         <OuterIterations>50</OuterIterations>
         <NewtonRaphson>True</NewtonRaphson>
+        <Averaging>0</Averaging>
+        <UpstreamWeighting>False</UpstreamWeighting>
+        <QuadraticSmoothingFactor>1e-5</QuadraticSmoothingFactor>
         <SolveForHead>False</SolveForHead>
         <ConstantHeadAsGHB>True</ConstantHeadAsGHB>
     </Settings>
