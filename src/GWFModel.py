@@ -20,6 +20,7 @@ class GWFModel:
         self.inneriterations = xml_static['inneriterations']
         self.outeriterations = xml_static['outeriterations']
         self.newtonraphson = xml_static['newtonraphson']
+        self.numericalderiv = xml_static['numericalderiv']
         self.headsolution = xml_static['headsolution']
         self.averaging = xml_static['averaging']
         self.upw = xml_static['upw']
@@ -245,12 +246,15 @@ class GWFModel:
                 if self.celltype[nodep] == 0:
                     continue
                 if nr:
-                    dx = self.__get_perturbation(hnode)
-                    dh = (hnodep - hnode)
-                    q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep) * dh
-                    dh = (hnodep - hnode + dx)
-                    q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx) * dh
-                    v = (q2 - q1) / dx
+                    if self.numericalderiv:
+                        dx = self.__get_perturbation(hnode)
+                        dh = (hnodep - hnode)
+                        q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep) * dh
+                        dh = (hnodep - hnode + dx)
+                        q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx) * dh
+                        v = (q2 - q1) / dx
+                    else:
+                        v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, anald=True)
                 else:
                     v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
                 if self.celltype[nodep] > 0:
@@ -294,7 +298,7 @@ class GWFModel:
         return None
 
 
-    def __calculateConductance(self, jdx, node, nodep, h, hp, dx=0.0):
+    def __calculateConductance(self, jdx, node, nodep, h, hp, dx=0.0, anald=False):
         frac1 = 1.005
         frac2 = 0.995
         v = 0.0
@@ -374,19 +378,34 @@ class GWFModel:
 
             if self.upw:
                 bratio = bup / tup
-                if bratio <= 0.0:
-                    v = 1e-6
-                else:
+                if anald:
                     a = 1. / (1 - self.quadsfactor)
-                    if bratio <= self.quadsfactor:
-                        sf = 0.5 * a * (bratio**2) / self.quadsfactor
+                    if bratio <= 0.0:
+                        sf = 0.
+                    elif bratio > 0. and bratio <= self.quadsfactor:
+                        sf = a * bratio / (self.quadsfactor * tup)
                     elif bratio > self.quadsfactor and bratio <= (1. - self.quadsfactor):
-                        sf = a * bratio + 0.5 * (1 - a)
+                        sf = a / tup
                     elif bratio > (1. - self.quadsfactor) and bratio < 1.:
-                        sf = 1. - ((0.5 * a * ((1 - bratio)**2)) / self.quadsfactor)
+                        sf = 1. - (-1. * a * (1. - bratio)) / (self.quadsfactor * tup)
                     else:
+                        sf = 0.
+                else:
+                    if bratio <= 0.0:
+                        v = 1e-6
                         sf = 1.
-                    v *= tup * sf
+                        tup = 1.
+                    else:
+                        a = 1. / (1 - self.quadsfactor)
+                        if bratio <= self.quadsfactor:
+                            sf = 0.5 * a * (bratio**2) / self.quadsfactor
+                        elif bratio > self.quadsfactor and bratio <= (1. - self.quadsfactor):
+                            sf = a * bratio + 0.5 * (1. - a)
+                        elif bratio > (1. - self.quadsfactor) and bratio < 1.:
+                            sf = 1. - ((0.5 * a * ((1. - bratio)**2)) / self.quadsfactor)
+                        else:
+                            sf = 1.
+                v *= tup * sf
         return v
 
     #structured data processing functions

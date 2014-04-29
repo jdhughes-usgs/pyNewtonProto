@@ -35,6 +35,7 @@
         <InnerIterations>100</InnerIterations>
         <OuterIterations>1000</OuterIterations>
         <NewtonRaphson>True</NewtonRaphson>
+        <NumericalDerivatives>False</NumericalDerivatives>
         <SolveForHead>True</SolveForHead>
         <Averaging>0</Averaging>
         <UpstreamWeighting>True</UpstreamWeighting>

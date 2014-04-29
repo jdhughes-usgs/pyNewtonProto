@@ -60,6 +60,18 @@ class StructuredXML:
             newtonraphson = True
         else:
             newtonraphson = False
+        #--numerical derivative flag
+        if newtonraphson:
+            try:
+                lt = settings.find('NumericalDerivatives').text
+            except:
+                lt = None
+            if lt == 'True':
+                numericalderiv = True
+            else:
+                numericalderiv = False
+        else:
+            numericalderiv = False
         #--optional solution of Newton Raphson as upgrade vector
         try:
             lt = settings.find('SolveForHead').text
@@ -109,6 +121,7 @@ class StructuredXML:
                 'outeriterations':outeriterations, 'inneriterations':inneriterations,
                 'hclose':hclose, 'rclose':rclose,
                 'newtonraphson':newtonraphson,
+                'numericalderiv':numericalderiv,
                 'headsolution':headsolution,
                 'averaging':averaging,
                 'upw':upw,
