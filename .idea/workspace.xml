@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0116975d-e90e-4ef1-ab1c-6442fb6eb194" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test/WaterTableExample_simple.xlsx" afterPath="$PROJECT_DIR$/Test/WaterTableExample_simple.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GWFModel.py" afterPath="$PROJECT_DIR$/src/GWFModel.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ReadStructuredxml.py" afterPath="$PROJECT_DIR$/src/ReadStructuredxml.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test/WaterTable1D.xml" afterPath="$PROJECT_DIR$/Test/WaterTable1D.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Test/Zaidel_multistep.xml" afterPath="$PROJECT_DIR$/Test/Zaidel_multistep.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pyNewtonProto.iml" afterPath="$PROJECT_DIR$/.idea/pyNewtonProto.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pyNewtonProto.iws" />
@@ -30,10 +30,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GWFModel.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="GWFModel.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="0" selection-start="6674" selection-end="6674" vertical-scroll-proportion="0.33333334" vertical-offset="2289" max-vertical-offset="9095">
+            <state line="297" column="43" selection-start="12711" selection-end="12711" vertical-scroll-proportion="0.0" vertical-offset="4062" max-vertical-offset="8340">
               <folding />
             </state>
           </provider>
@@ -42,7 +42,7 @@
       <file leaf-file-name="WaterTable1D.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Test/WaterTable1D.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="34" selection-start="1669" selection-end="1669" vertical-scroll-proportion="0.0" vertical-offset="798" max-vertical-offset="1547">
+            <state line="59" column="34" selection-start="1879" selection-end="1879" vertical-scroll-proportion="0.0" vertical-offset="885" max-vertical-offset="1365">
               <folding />
             </state>
           </provider>
@@ -51,34 +51,25 @@
       <file leaf-file-name="ReadStructuredxml.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ReadStructuredxml.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="30" selection-start="2856" selection-end="2870" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="4080">
+            <state line="85" column="24" selection-start="3316" selection-end="3316" vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="3795">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RunStructuredModel.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="RunStructuredModel.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/RunStructuredModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="612">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PAssyJacobian" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/PAssyJacobian">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="100" column="103" selection-start="2983" selection-end="3115" vertical-scroll-proportion="0.0" vertical-offset="1700" max-vertical-offset="2125">
+            <state line="20" column="0" selection-start="402" selection-end="402" vertical-scroll-proportion="0.4918033" vertical-offset="0" max-vertical-offset="549">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="linsolve.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Anaconda/Lib/site-packages/scipy/sparse/linalg/dsolve/linsolve.py">
+        <entry file="file://$USER_HOME$/anaconda/lib/python2.7/site-packages/scipy/sparse/linalg/dsolve/linsolve.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="300" column="0" selection-start="10264" selection-end="10264" vertical-scroll-proportion="0.0" vertical-offset="4788" max-vertical-offset="6069">
+            <state line="300" column="0" selection-start="10264" selection-end="10264" vertical-scroll-proportion="0.0" vertical-offset="4197" max-vertical-offset="5355">
               <folding />
             </state>
           </provider>
@@ -87,7 +78,7 @@
       <file leaf-file-name="Zaidel_multistep.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Test/Zaidel_multistep.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="0" selection-start="3414" selection-end="3473" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1003">
+            <state line="35" column="26" selection-start="3346" selection-end="3346" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
               <folding />
             </state>
           </provider>
@@ -96,7 +87,7 @@
       <file leaf-file-name="WaterTable2D.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Test/WaterTable2D.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="44" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0" vertical-offset="670" max-vertical-offset="1564">
+            <state line="66" column="44" selection-start="2119" selection-end="2119" vertical-scroll-proportion="0.0" vertical-offset="990" max-vertical-offset="1380">
               <folding />
             </state>
           </provider>
@@ -122,16 +113,15 @@
         <option value="$PROJECT_DIR$/src/PAssyJacobian" />
         <option value="$PROJECT_DIR$/Test/Zaidel_data.py" />
         <option value="$PROJECT_DIR$/Test/Zaidel_data.out" />
-        <option value="$PROJECT_DIR$/Test/Zaidel_multistep.xml" />
+        <option value="$PROJECT_DIR$/Test/WaterTable1D.xml" />
         <option value="$PROJECT_DIR$/src/ReadStructuredxml.py" />
         <option value="$PROJECT_DIR$/src/GWFModel.py" />
-        <option value="$PROJECT_DIR$/Test/WaterTable1D.xml" />
+        <option value="$PROJECT_DIR$/Test/Zaidel_multistep.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
+    <option name="y" value="22" />
     <option name="width" value="1696" />
     <option name="height" value="1026" />
   </component>
@@ -161,6 +151,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -207,9 +198,26 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyNewtonProto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pyNewtonProto" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Zaidel_mfnwt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -422,7 +430,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="0" y="22" width="1696" height="1026" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -430,7 +438,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39782608" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3970742" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -475,26 +483,14 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/src/GWFModel.py</url>
-          <line>122</line>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/src/GWFModel.py</url>
-          <line>151</line>
-          <option name="timeStamp" value="42" />
+          <line>173</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="43" />
+      <option name="time" value="48" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="13" selection-start="2055" selection-end="2055" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="8415">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ReadStructuredxml.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="85" column="15" selection-start="3490" selection-end="3490" vertical-scroll-proportion="0.0" vertical-offset="1445" max-vertical-offset="3451">
@@ -771,6 +767,13 @@
         <state line="45" column="0" selection-start="1827" selection-end="1827" vertical-scroll-proportion="0.5620438" vertical-offset="367" max-vertical-offset="915" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Test/WaterTable1D.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="34" selection-start="1879" selection-end="1879" vertical-scroll-proportion="0.0" vertical-offset="885" max-vertical-offset="1365">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PAssyJacobian">
       <provider selected="true" editor-type-id="text-editor">
         <state line="100" column="103" selection-start="2983" selection-end="3115" vertical-scroll-proportion="0.0" vertical-offset="1146" max-vertical-offset="2040">
@@ -785,44 +788,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1538" column="0" selection-start="60694" selection-end="60694" vertical-scroll-proportion="0.0" vertical-offset="21651" max-vertical-offset="22200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ReadStructuredxml.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="30" selection-start="2856" selection-end="2870" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="4080">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test/Zaidel_multistep.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="3414" selection-end="3473" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1003">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test/WaterTable1D.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="34" selection-start="1669" selection-end="1669" vertical-scroll-proportion="0.0" vertical-offset="798" max-vertical-offset="1547">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Anaconda/Lib/site-packages/scipy/sparse/linalg/dsolve/linsolve.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="300" column="0" selection-start="10264" selection-end="10264" vertical-scroll-proportion="0.0" vertical-offset="4788" max-vertical-offset="6069">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RunStructuredModel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="402" selection-end="402" vertical-scroll-proportion="0.0" vertical-offset="84" max-vertical-offset="612">
+        <state line="85" column="24" selection-start="3316" selection-end="3316" vertical-scroll-proportion="0.0" vertical-offset="750" max-vertical-offset="3795">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GWFModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="0" selection-start="6674" selection-end="6674" vertical-scroll-proportion="0.33333334" vertical-offset="2289" max-vertical-offset="9095">
+        <state line="297" column="43" selection-start="12711" selection-end="12711" vertical-scroll-proportion="0.0" vertical-offset="4062" max-vertical-offset="8340">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/lib/python2.7/site-packages/scipy/sparse/linalg/dsolve/linsolve.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="300" column="0" selection-start="10264" selection-end="10264" vertical-scroll-proportion="0.0" vertical-offset="4197" max-vertical-offset="5355">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/Zaidel_multistep.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="26" selection-start="3346" selection-end="3346" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RunStructuredModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="402" selection-end="402" vertical-scroll-proportion="0.4918033" vertical-offset="0" max-vertical-offset="549">
           <folding />
         </state>
       </provider>

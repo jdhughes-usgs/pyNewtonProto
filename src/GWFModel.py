@@ -21,6 +21,7 @@ class GWFModel:
         self.outeriterations = xml_static['outeriterations']
         self.newtonraphson = xml_static['newtonraphson']
         self.numericalderiv = xml_static['numericalderiv']
+        self.backtracking = xml_static['backtracking']
         self.headsolution = xml_static['headsolution']
         self.averaging = xml_static['averaging']
         self.upw = xml_static['upw']
@@ -122,6 +123,8 @@ class GWFModel:
             rmax0 = self.__calculateResidual(x0)
             if outer == 0 and abs(rmax0) <= 0.1 * self.rclose:
                 break
+            if self.backtracking:
+                l2norm0 = np.linalg.norm(self.r)
             if self.newtonraphson:
                 self.__assemble(nr=True)
                 self.acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
@@ -134,7 +137,7 @@ class GWFModel:
             else:
                 b = self.rhs.copy()
             #--construct the preconditioner
-            M = self.get_preconditioner()
+            M = self.get_preconditioner(fill_factor=3, drop_tol=1e-4)
             #--solve matrix
             info = 0
             if self.newtonraphson:
@@ -149,6 +152,23 @@ class GWFModel:
                     self.x += x0
             #--calculate updated residual
             rmax1 = self.__calculateResidual(self.x)
+            #--back tracking
+            if self.backtracking and rmax1 > self.rclose:
+                l2norm1 = np.linalg.norm(self.r)
+                if l2norm1 > 0.99 * l2norm0:
+                    if self.headsolution:
+                        dx = self.x - x0
+                    else:
+                        dx = self.x
+                    lv = 0.99
+                    for ibk in xrange(100):
+                        self.x = x0 + lv * dx
+                        rt = self.__calculateResidual(self.x)
+                        l2norm = np.linalg.norm(self.r)
+                        if l2norm < 0.90 * l2norm0:
+                            break
+                        lv *= 0.95
+            #--calculate hmax
             hmax = np.abs(self.x - x0).max()
             if hmax <= self.hclose and abs(rmax1) <= self.rclose:
                 print ' Outer Iterations: {0}'.format(outer+1)
@@ -274,7 +294,8 @@ class GWFModel:
         return
 
     def __get_perturbation(self, v):
-        return 1.0e-7
+        #return 1.0e-7
+        return np.sqrt(np.finfo(float).eps)
 
     def __calculateResidual(self, x):
         #assemble matrix

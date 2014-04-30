@@ -72,6 +72,18 @@ class StructuredXML:
                 numericalderiv = False
         else:
             numericalderiv = False
+        #--backtracking flag
+        if newtonraphson:
+            try:
+                lt = settings.find('Backtracking').text
+            except:
+                lt = None
+            if lt == 'True':
+                backtracking = True
+            else:
+                backtracking = False
+        else:
+            backtracking = False
         #--optional solution of Newton Raphson as upgrade vector
         try:
             lt = settings.find('SolveForHead').text
@@ -122,6 +134,7 @@ class StructuredXML:
                 'hclose':hclose, 'rclose':rclose,
                 'newtonraphson':newtonraphson,
                 'numericalderiv':numericalderiv,
+                'backtracking':backtracking,
                 'headsolution':headsolution,
                 'averaging':averaging,
                 'upw':upw,

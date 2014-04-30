@@ -30,12 +30,13 @@
         </Head>
     </InitialState>
     <Settings>
-        <Hclose>1.e-16</Hclose>
+        <Hclose>1.e-4</Hclose>
         <Rclose>1.e-9</Rclose>
-        <InnerIterations>100</InnerIterations>
-        <OuterIterations>1000</OuterIterations>
+        <InnerIterations>50</InnerIterations>
+        <OuterIterations>200</OuterIterations>
         <NewtonRaphson>True</NewtonRaphson>
-        <NumericalDerivatives>False</NumericalDerivatives>
+        <NumericalDerivatives>True</NumericalDerivatives>
+        <Backtracking>True</Backtracking>
         <SolveForHead>True</SolveForHead>
         <Averaging>0</Averaging>
         <UpstreamWeighting>True</UpstreamWeighting>
