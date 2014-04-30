@@ -17,6 +17,7 @@ class GWFModel:
         #settings
         self.hclose = xml_static['hclose']
         self.rclose = xml_static['rclose']
+        self.rclosetype = xml_static['rclosetype']
         self.inneriterations = xml_static['inneriterations']
         self.outeriterations = xml_static['outeriterations']
         self.newtonraphson = xml_static['newtonraphson']
@@ -121,8 +122,8 @@ class GWFModel:
             #  do not attempt a solution if the initial solution is an order of
             #  magnitude less than rclose
             rmax0 = self.__calculateResidual(x0)
-            if outer == 0 and abs(rmax0) <= 0.1 * self.rclose:
-                break
+            #if outer == 0 and abs(rmax0) <= 0.1 * self.rclose:
+            #    break
             if self.backtracking:
                 l2norm0 = np.linalg.norm(self.r)
             if self.newtonraphson:
@@ -137,11 +138,12 @@ class GWFModel:
             else:
                 b = self.rhs.copy()
             #--construct the preconditioner
+            #M = self.get_preconditioner(fill_factor=3, drop_tol=1e-4)
             M = self.get_preconditioner(fill_factor=3, drop_tol=1e-4)
             #--solve matrix
             info = 0
             if self.newtonraphson:
-                self.x[:], info = bicgstab(self.acsr, b, x0=self.x, tol=self.rclose, maxiter=self.inneriterations, M=M)
+                self.x[:], info = bicgstab(self.acsr, b, x0=self.x, tol=1e-9, maxiter=self.inneriterations, M=M)
             else:
                 self.x[:], info = cg(self.acsr, b, x0=self.x, tol=self.rclose, maxiter=self.inneriterations, M=M)
             if info < 0:
@@ -163,13 +165,15 @@ class GWFModel:
                     lv = 0.99
                     for ibk in xrange(100):
                         self.x = x0 + lv * dx
-                        rt = self.__calculateResidual(self.x)
+                        rt = self.__calculateResidual(self.x, reset_ccsr=True)
+                        rmax1 = rt
                         l2norm = np.linalg.norm(self.r)
                         if l2norm < 0.90 * l2norm0:
                             break
                         lv *= 0.95
             #--calculate hmax
             hmax = np.abs(self.x - x0).max()
+            #--calculate
             if hmax <= self.hclose and abs(rmax1) <= self.rclose:
                 print ' Outer Iterations: {0}'.format(outer+1)
                 converged = True
@@ -266,15 +270,17 @@ class GWFModel:
                 if self.celltype[nodep] == 0:
                     continue
                 if nr:
+                    dx = self.__get_perturbation(hnode)
+                    dh = (hnodep - hnode + dx)
                     if self.numericalderiv:
-                        dx = self.__get_perturbation(hnode)
                         dh = (hnodep - hnode)
                         q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep) * dh
-                        dh = (hnodep - hnode + dx)
                         q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx) * dh
                         v = (q2 - q1) / dx
                     else:
                         v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, anald=True)
+                        v *= dh
+                        v += self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
                 else:
                     v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
                 if self.celltype[nodep] > 0:
@@ -297,12 +303,17 @@ class GWFModel:
         #return 1.0e-7
         return np.sqrt(np.finfo(float).eps)
 
-    def __calculateResidual(self, x):
+    def __calculateResidual(self, x, reset_ccsr=False):
         #assemble matrix
         self.__assemble(x=x)
+        if reset_ccsr:
+            self.ccsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
         self.r = self.ccsr.dot(x) - self.rhs
-        iloc = np.argmax(np.abs(self.r))
-        rmax = self.r[iloc]
+        if self.rclosetype == 'infinity':
+            iloc = np.argmax(np.abs(self.r))
+            rmax = self.r[iloc]
+        elif self.rclosetype == 'l2norm':
+            rmax = np.linalg.norm(self.r)
         return rmax
 
     def __calculateQNodes(self, x):
