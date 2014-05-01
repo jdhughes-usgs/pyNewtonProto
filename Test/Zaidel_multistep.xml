@@ -30,11 +30,10 @@
         </Head>
     </InitialState>
     <Settings>
-        <RCloseType>l2norm</RCloseType>
         <Hclose>1.e-9</Hclose>
-        <Rclose>0.0001</Rclose>
+        <Rclose>1e-9</Rclose>
         <InnerIterations>50</InnerIterations>
-        <OuterIterations>200</OuterIterations>
+        <OuterIterations>100</OuterIterations>
         <NewtonRaphson>True</NewtonRaphson>
         <NumericalDerivatives>False</NumericalDerivatives>
         <Backtracking>True</Backtracking>

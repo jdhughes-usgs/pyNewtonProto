@@ -143,7 +143,7 @@ class GWFModel:
             #--solve matrix
             info = 0
             if self.newtonraphson:
-                self.x[:], info = bicgstab(self.acsr, b, x0=self.x, tol=1e-9, maxiter=self.inneriterations, M=M)
+                self.x[:], info = bicgstab(self.acsr, b, x0=self.x, tol=self.rclose, maxiter=self.inneriterations, M=M)
             else:
                 self.x[:], info = cg(self.acsr, b, x0=self.x, tol=self.rclose, maxiter=self.inneriterations, M=M)
             if info < 0:
@@ -271,16 +271,17 @@ class GWFModel:
                     continue
                 if nr:
                     dx = self.__get_perturbation(hnode)
-                    dh = (hnodep - hnode + dx)
                     if self.numericalderiv:
                         dh = (hnodep - hnode)
                         q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep) * dh
+                        dh = (hnodep - (hnode + dx))
                         q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx) * dh
-                        v = (q2 - q1) / dx
+                        v = (q1 - q2) / dx
                     else:
-                        v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, anald=True)
-                        v *= dh
-                        v += self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
+                        c1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
+                        dcdx = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, anald=True)
+                        dq = c1 * dx - (dcdx * dx * (hnodep - (hnode + dx)))
+                        v = dq / dx
                 else:
                     v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
                 if self.celltype[nodep] > 0:
