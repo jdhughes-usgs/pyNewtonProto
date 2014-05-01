@@ -51,6 +51,15 @@ class StructuredXML:
         inneriterations = int(settings.find('InnerIterations').text)
         hclose = float(settings.find('Hclose').text)
         rclose = float(settings.find('Rclose').text)
+        #--RCloseType flag
+        try:
+            lt = settings.find('RCloseType').text
+        except:
+            lt = None
+        if lt is None:
+            rclosetype = 'infinity'
+        else:
+            rclosetype = 'l2norm'
         #--Newton Raphson flag
         try:
             lt = settings.find('NewtonRaphson').text
@@ -60,6 +69,30 @@ class StructuredXML:
             newtonraphson = True
         else:
             newtonraphson = False
+        #--numerical derivative flag
+        if newtonraphson:
+            try:
+                lt = settings.find('NumericalDerivatives').text
+            except:
+                lt = None
+            if lt == 'True':
+                numericalderiv = True
+            else:
+                numericalderiv = False
+        else:
+            numericalderiv = False
+        #--backtracking flag
+        if newtonraphson:
+            try:
+                lt = settings.find('Backtracking').text
+            except:
+                lt = None
+            if lt == 'True':
+                backtracking = True
+            else:
+                backtracking = False
+        else:
+            backtracking = False
         #--optional solution of Newton Raphson as upgrade vector
         try:
             lt = settings.find('SolveForHead').text
@@ -107,8 +140,10 @@ class StructuredXML:
                 'scelltype':scelltype, 'shead0':shead0,
                 'selevations':selevations, 'shk':shk,
                 'outeriterations':outeriterations, 'inneriterations':inneriterations,
-                'hclose':hclose, 'rclose':rclose,
+                'hclose':hclose, 'rclose':rclose, 'rclosetype':rclosetype,
                 'newtonraphson':newtonraphson,
+                'numericalderiv':numericalderiv,
+                'backtracking':backtracking,
                 'headsolution':headsolution,
                 'averaging':averaging,
                 'upw':upw,

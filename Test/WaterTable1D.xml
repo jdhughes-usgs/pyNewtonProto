@@ -53,6 +53,7 @@
         <InnerIterations>100</InnerIterations>
         <OuterIterations>50</OuterIterations>
         <NewtonRaphson>True</NewtonRaphson>
+        <NumericalDerivatives>True</NumericalDerivatives>
         <Averaging>0</Averaging>
         <UpstreamWeighting>False</UpstreamWeighting>
         <QuadraticSmoothingFactor>1e-5</QuadraticSmoothingFactor>

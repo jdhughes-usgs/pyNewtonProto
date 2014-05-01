@@ -17,9 +17,12 @@ class GWFModel:
         #settings
         self.hclose = xml_static['hclose']
         self.rclose = xml_static['rclose']
+        self.rclosetype = xml_static['rclosetype']
         self.inneriterations = xml_static['inneriterations']
         self.outeriterations = xml_static['outeriterations']
         self.newtonraphson = xml_static['newtonraphson']
+        self.numericalderiv = xml_static['numericalderiv']
+        self.backtracking = xml_static['backtracking']
         self.headsolution = xml_static['headsolution']
         self.averaging = xml_static['averaging']
         self.upw = xml_static['upw']
@@ -119,8 +122,10 @@ class GWFModel:
             #  do not attempt a solution if the initial solution is an order of
             #  magnitude less than rclose
             rmax0 = self.__calculateResidual(x0)
-            if outer == 0 and abs(rmax0) <= 0.1 * self.rclose:
-                break
+            #if outer == 0 and abs(rmax0) <= 0.1 * self.rclose:
+            #    break
+            if self.backtracking:
+                l2norm0 = np.linalg.norm(self.r)
             if self.newtonraphson:
                 self.__assemble(nr=True)
                 self.acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
@@ -133,11 +138,12 @@ class GWFModel:
             else:
                 b = self.rhs.copy()
             #--construct the preconditioner
-            M = self.get_preconditioner()
+            #M = self.get_preconditioner(fill_factor=3, drop_tol=1e-4)
+            M = self.get_preconditioner(fill_factor=3, drop_tol=1e-4)
             #--solve matrix
             info = 0
             if self.newtonraphson:
-                self.x[:], info = bicgstab(self.acsr, b, x0=self.x, tol=self.rclose, maxiter=self.inneriterations, M=M)
+                self.x[:], info = bicgstab(self.acsr, b, x0=self.x, tol=1e-9, maxiter=self.inneriterations, M=M)
             else:
                 self.x[:], info = cg(self.acsr, b, x0=self.x, tol=self.rclose, maxiter=self.inneriterations, M=M)
             if info < 0:
@@ -148,7 +154,26 @@ class GWFModel:
                     self.x += x0
             #--calculate updated residual
             rmax1 = self.__calculateResidual(self.x)
+            #--back tracking
+            if self.backtracking and rmax1 > self.rclose:
+                l2norm1 = np.linalg.norm(self.r)
+                if l2norm1 > 0.99 * l2norm0:
+                    if self.headsolution:
+                        dx = self.x - x0
+                    else:
+                        dx = self.x
+                    lv = 0.99
+                    for ibk in xrange(100):
+                        self.x = x0 + lv * dx
+                        rt = self.__calculateResidual(self.x, reset_ccsr=True)
+                        rmax1 = rt
+                        l2norm = np.linalg.norm(self.r)
+                        if l2norm < 0.90 * l2norm0:
+                            break
+                        lv *= 0.95
+            #--calculate hmax
             hmax = np.abs(self.x - x0).max()
+            #--calculate
             if hmax <= self.hclose and abs(rmax1) <= self.rclose:
                 print ' Outer Iterations: {0}'.format(outer+1)
                 converged = True
@@ -246,11 +271,16 @@ class GWFModel:
                     continue
                 if nr:
                     dx = self.__get_perturbation(hnode)
-                    dh = (hnodep - hnode)
-                    q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep) * dh
                     dh = (hnodep - hnode + dx)
-                    q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx) * dh
-                    v = (q2 - q1) / dx
+                    if self.numericalderiv:
+                        dh = (hnodep - hnode)
+                        q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep) * dh
+                        q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx) * dh
+                        v = (q2 - q1) / dx
+                    else:
+                        v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, anald=True)
+                        v *= dh
+                        v += self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
                 else:
                     v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
                 if self.celltype[nodep] > 0:
@@ -270,14 +300,20 @@ class GWFModel:
         return
 
     def __get_perturbation(self, v):
-        return 1.0e-7
+        #return 1.0e-7
+        return np.sqrt(np.finfo(float).eps)
 
-    def __calculateResidual(self, x):
+    def __calculateResidual(self, x, reset_ccsr=False):
         #assemble matrix
         self.__assemble(x=x)
+        if reset_ccsr:
+            self.ccsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
         self.r = self.ccsr.dot(x) - self.rhs
-        iloc = np.argmax(np.abs(self.r))
-        rmax = self.r[iloc]
+        if self.rclosetype == 'infinity':
+            iloc = np.argmax(np.abs(self.r))
+            rmax = self.r[iloc]
+        elif self.rclosetype == 'l2norm':
+            rmax = np.linalg.norm(self.r)
         return rmax
 
     def __calculateQNodes(self, x):
@@ -294,7 +330,7 @@ class GWFModel:
         return None
 
 
-    def __calculateConductance(self, jdx, node, nodep, h, hp, dx=0.0):
+    def __calculateConductance(self, jdx, node, nodep, h, hp, dx=0.0, anald=False):
         frac1 = 1.005
         frac2 = 0.995
         v = 0.0
@@ -374,19 +410,34 @@ class GWFModel:
 
             if self.upw:
                 bratio = bup / tup
-                if bratio <= 0.0:
-                    v = 1e-6
-                else:
+                if anald:
                     a = 1. / (1 - self.quadsfactor)
-                    if bratio <= self.quadsfactor:
-                        sf = 0.5 * a * (bratio**2) / self.quadsfactor
+                    if bratio <= 0.0:
+                        sf = 0.
+                    elif bratio > 0. and bratio <= self.quadsfactor:
+                        sf = a * bratio / (self.quadsfactor * tup)
                     elif bratio > self.quadsfactor and bratio <= (1. - self.quadsfactor):
-                        sf = a * bratio + 0.5 * (1 - a)
+                        sf = a / tup
                     elif bratio > (1. - self.quadsfactor) and bratio < 1.:
-                        sf = 1. - ((0.5 * a * ((1 - bratio)**2)) / self.quadsfactor)
+                        sf = 1. - (-1. * a * (1. - bratio)) / (self.quadsfactor * tup)
                     else:
+                        sf = 0.
+                else:
+                    if bratio <= 0.0:
+                        v = 1e-6
                         sf = 1.
-                    v *= tup * sf
+                        tup = 1.
+                    else:
+                        a = 1. / (1 - self.quadsfactor)
+                        if bratio <= self.quadsfactor:
+                            sf = 0.5 * a * (bratio**2) / self.quadsfactor
+                        elif bratio > self.quadsfactor and bratio <= (1. - self.quadsfactor):
+                            sf = a * bratio + 0.5 * (1. - a)
+                        elif bratio > (1. - self.quadsfactor) and bratio < 1.:
+                            sf = 1. - ((0.5 * a * ((1. - bratio)**2)) / self.quadsfactor)
+                        else:
+                            sf = 1.
+                v *= tup * sf
         return v
 
     #structured data processing functions
