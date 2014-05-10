@@ -1,6 +1,7 @@
 import sys
 
-import GWFModel as gwf
+#import GWFModel as gwf
+import GWFNWTModel as gwf
 
 def main():
     #get name of xml control file
@@ -12,7 +13,8 @@ def main():
             fxml = sys.argv[iarg]
 
     #--read xml file and return structured model instance
-    model = gwf.GWFModel(fxml)
+    #model = gwf.GWFModel(fxml)
+    model = gwf.GWFNWTModel(fxml)
 
     number_periods = 2
     number_timesteps = 1

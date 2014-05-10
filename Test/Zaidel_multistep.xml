@@ -35,9 +35,10 @@
         <InnerIterations>50</InnerIterations>
         <OuterIterations>100</OuterIterations>
         <NewtonRaphson>True</NewtonRaphson>
-        <NumericalDerivatives>False</NumericalDerivatives>
-        <Backtracking>True</Backtracking>
-        <SolveForHead>True</SolveForHead>
+        <NumericalDerivatives>True</NumericalDerivatives>
+        <BottomFlag>False</BottomFlag>
+        <Backtracking>False</Backtracking>
+        <SolveForHead>False</SolveForHead>
         <Averaging>0</Averaging>
         <UpstreamWeighting>True</UpstreamWeighting>
         <QuadraticSmoothingFactor>1e-5</QuadraticSmoothingFactor>

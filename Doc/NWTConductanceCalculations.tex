@@ -1,0 +1,102 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{letterpaper} % or letterpaper (US) or a5paper or....
+\geometry{margin=1in} % for example, change the margins to 2 inches all round
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single 
+
+\usepackage{amsmath}
+
+
+% These packages are all incorporated in the memoir class to one degree or another...
+
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Brief Article}
+\author{The Author}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\section{Conductance formulation}
+
+\begin{subequations}
+\begin{align}
+	CR_{i,j-1/2,k} = & 1 \times 10^{-9} & X \leq 0 \\
+	CR_{i,j-1/2,k} = & \Delta C_{i} \Delta Z_{k} \frac{K_{i,j-1/2,k}}{\Delta R_{j-1}} \left[ \frac{0.5AX^{2}}{\Omega} \right]  & 0 < X \leq \Omega \\
+	CR_{i,j-1/2,k} = & \Delta C_{i} \Delta Z_{k} \frac{K_{i,j-1/2,k}}{\Delta R_{j-1}} \left[ AX + 0.5  \left( 1 - A \right) \right] & \Omega < X \leq (1 - \Omega )\\
+	CR_{i,j-1/2,k} = & \Delta C_{i} \Delta Z_{k} \frac{K_{i,j-1/2,k}}{\Delta R_{j-1}} \left[ \frac{0.5A \left( 1- X \right)^{2}}{\Omega} \right]  & (1 - \Omega) < X \leq 1 \\
+	CR_{i,j-1/2,k} = & \Delta C_{i} \Delta Z_{k} \frac{K_{i,j-1/2,k}}{\Delta R_{j-1}} & 1 \leq X
+	\label{eq:conductance}
+\end{align}
+\end{subequations}
+
+\section{Calculate the derivatives}
+
+\begin{align}
+	\frac{\partial}{\partial X_{i,j,k}} 1 \times 10^{-9} = 0
+	\label{eq:deriv1}
+\end{align}
+
+\begin{align}
+	\frac{\partial}{\partial X_{i,j,k}} \left[ \frac{0.5AX^{2}}{\Omega} \right] = \frac{AX}{\Omega}
+	\label{eq:deriv2}
+\end{align}
+
+\begin{align}
+	\frac{\partial}{\partial X_{i,j,k}} \left[ AX + 0.5  \left( 1 - A \right) \right] = A
+	\label{eq:deriv3}
+\end{align}
+
+\begin{align}
+	\frac{\partial}{\partial X_{i,j,k}} \left[ \frac{0.5A \left( 1- X \right)^{2}}{\Omega} \right] = & \frac{0.5A}{\Omega} \frac{\partial}{\partial X_{i,j,k}} \left(1 - X \right)^{2} = \frac{0.5A}{\Omega} 2X = \frac{A \left( 1 - X \right) }{\Omega}
+	\label{eq:deriv4}
+\end{align}
+
+\begin{align}
+	\frac{\partial}{\partial X_{i,j,k}} 1 = 0
+	\label{eq:deriv5}
+\end{align}
+
+
+\section{Conductance derivative}
+
+\begin{subequations}
+\begin{align}
+	\frac{\partial CR_{i,j-1/2,k}}{\partial h_{i,j,k}} = & 1 \times 10^{-9} & X \leq 0 \\
+	\frac{\partial CR_{i,j-1/2,k}}{\partial h_{i,j,k}} = & \Delta C_{i} \Delta Z_{k} \frac{K_{i,j-1/2,k}}{\Delta R_{j-1}} \left[ \frac{AX}{\Omega} \right]  & 0 < X \leq \Omega \\
+	\frac{\partial CR_{i,j-1/2,k}}{\partial h_{i,j,k}} = & \Delta C_{i} \Delta Z_{k} \frac{K_{i,j-1/2,k}}{\Delta R_{j-1}} \left[ A \right] & \Omega < X \leq (1 - \Omega ) \\
+	\frac{\partial CR_{i,j-1/2,k}}{\partial h_{i,j,k}} = & \Delta C_{i} \Delta Z_{k} \frac{K_{i,j-1/2,k}}{\Delta R_{j-1}} \left[ \frac{A \left(1 - X \right)}{\Omega} \right]  & (1 - \Omega) < X \leq 1 \\
+	\frac{\partial CR_{i,j-1/2,k}}{\partial h_{i,j,k}} = & 0 & 1 \leq X
+	\label{eq:anald}
+\end{align}
+\end{subequations}
+
+
+
+
+\end{document}

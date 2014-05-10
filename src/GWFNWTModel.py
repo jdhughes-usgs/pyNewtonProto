@@ -1,3 +1,5 @@
+__author__ = 'JosephHughes'
+
 import math
 import numpy as np
 from scipy.sparse import csr_matrix
@@ -6,7 +8,7 @@ from scipy.sparse.linalg import cg, bicgstab
 
 import ReadStructuredxml as sxml
 
-class GWFModel:
+class GWFNWTModel:
     def __init__(self, fxml, structuredModel=True):
         self.structuredModel = structuredModel
         if self.structuredModel:
@@ -131,15 +133,11 @@ class GWFModel:
                 self.__assemble(nr=True)
                 self.acsr = csr_matrix((self.a, self.ja, self.ia), shape=(self.neq, self.neq))
                 b = -self.r.copy()
-                aif self.headsolution:
-                    t = self.acsr.dot(x0)
-                    b += t
-                else:
-                    self.x.fill(0.0)
+                self.x.fill(0.0)
             else:
                 b = self.rhs.copy()
             #--construct the preconditioner
-            #M = self.get_preconditioner(fill_factor=3, drop_tol=1e-4)
+            #M = self.get_preconditioner()
             M = self.get_preconditioner(fill_factor=3, drop_tol=1e-4)
             #--solve matrix
             info = 0
@@ -149,10 +147,6 @@ class GWFModel:
                 self.x[:], info = cg(self.acsr, b, x0=self.x, tol=self.rclose, maxiter=self.inneriterations, M=M)
             if info < 0:
                 raise Exception('illegal input or breakdown in linear solver...')
-            #--add upgrade to x0
-            #if self.newtonraphson:
-            #    if not self.headsolution:
-            #        self.x += x0
             #--calculate updated residual
             rmax1 = self.__calculateResidual(self.x)
             #
@@ -162,10 +156,7 @@ class GWFModel:
             if self.backtracking and rmax1 > self.rclose:
                 l2norm1 = np.linalg.norm(self.r)
                 if l2norm1 > 0.99 * l2norm0:
-                    if self.headsolution:
-                        dx = self.x - x0
-                    else:
-                        dx = self.x
+                    dx = self.x - x0
                     lv = 0.99
                     for ibk in xrange(100):
                         self.x = x0 + lv * dx
@@ -279,6 +270,8 @@ class GWFModel:
                 hnodep = x[nodep]
                 if self.celltype[nodep] == 0:
                     continue
+                c1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
+                v = 0.
                 if nr:
                     dx = self.__get_perturbation(hnode)
                     if self.numericalderiv:
@@ -286,23 +279,19 @@ class GWFModel:
                         q1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep) * dh
                         dh = (hnodep - (hnode + dx))
                         q2 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, dx=dx) * dh
-                        v = (q1 - q2) / dx
+                        dcdx = (q1 - q2) / dx
                     else:
-                        c1 = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
                         dcdx = self.__calculateConductance(jdx, node, nodep, hnode, hnodep, anald=True)
-                        dq = c1 * dx - (dcdx * dx * (hnodep - (hnode + dx)))
-                        v = dq / dx
-                else:
-                    v = self.__calculateConductance(jdx, node, nodep, hnode, hnodep)
+                    v = dcdx * (hnodep - hnode)
                 if self.celltype[nodep] > 0:
-                    self.a[idiag] -= v
-                    self.a[jdx] = v
+                    self.a[idiag] += v - c1
+                    self.a[jdx] = v + c1
                 elif self.celltype[nodep] < 0:
-                    self.a[idiag] -= v
+                    self.a[idiag] += v - c1
                     if self.chasghb:
-                        self.rhs[node] -= v*hnodep
+                        self.rhs[node] -= (v - c1)*hnodep
                     else:
-                        self.a[jdx] = v
+                        self.a[jdx] = v + c1
         #add boundary conditions
         if self.rechargebnd:
             for node in xrange(self.neq):
